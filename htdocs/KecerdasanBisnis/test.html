@@ -1,0 +1,35 @@
+<html>
+
+ <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/bower_components/jquery/dist/jquery.js"></script>  
+ <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/bower_components/powerbi-client/dist/powerbi.js""></script>
+
+<iframe width="800" height="500" src="https://app.powerbi.com/view?r=eyJrIjoiMDQ0MjQ2ZDEtOTFiMy00MDdmLTk4NWEtMTRiMGIyMzljMzhkIiwidCI6IjI4MGRhZjUyLTEzZjYtNDc1ZS1hNDJhLThhNzUxNzU5Zjk3YSIsImMiOjEwfQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
+
+<script type="text/javascript">
+var embedConfiguration = {
+    type: 'report',
+    accessToken: 'yourTokenHere',
+    id: '584662d2-2ecd-4bb5-a3f6-7bda03ee9d95',
+    embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiMDQ0MjQ2ZDEtOTFiMy00MDdmLTk4NWEtMTRiMGIyMzljMzhkIiwidCI6IjI4MGRhZjUyLTEzZjYtNDc1ZS1hNDJhLThhNzUxNzU5Zjk3YSIsImMiOjEwfQ%3D%3D' 
+}; 
+
+var report;
+
+window.onload = function () { 
+
+var $reportContainer = $('#reportContainer'); 
+report= powerbi.embed($reportContainer.get(0), embedConfiguration);
+ 
+} 
+
+function reloadreport(){ 
+var $reportContainer = $('#reportContainer');
+powerbi.embedNew($reportContainer.get(0), embedConfiguration);
+
+};
+</script>
+
+<button onclick="reloadreport()">Click me to refresh</button>
+<div id="reportContainer"></div>
+
+</html>  

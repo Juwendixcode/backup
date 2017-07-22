@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Karakter set utf-8 paling direkomendasikan karena bersifat universal -->
+	<meta charset="utf-8">
+
+	<!-- Untuk optimalisasi tampilan di browser yg berbeda -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Biography</title>
+
+	<!-- link ke file Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+	<!-- link ke file CSS custom -->
+	<style type="text/css">
+	body{	
+		overflow: hidden;
+	}
+	.isi{
+  		height: 522px;
+  		display: block;
+	}
+	.isi::after{
+		 content: "";
+  		 background: url(images/bw.jpg);
+  		 background-size: 100% 100%;
+		  opacity: 0.5;
+		  top: 0;
+		  left: 0;
+		  bottom: 0;
+		  right: 0;
+		  position: absolute;
+		  background-repeat: no-repeat;
+		  z-index: -1; 	
+	}
+	.kiri{
+		height: 552px;
+	}
+	.kanan{
+		
+		height: 552px;
+		
+	
+	}
+
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top" style="margin: 0px;" >
+		
+		<div class="container">			
+			<div class="navbar-header navbar-left">
+				<ul class="nav navbar-nav" style="margin-left: 330px; padding-top: 10px;">
+						<li><a href="#bio"><h4>BIOGRAPHY</h4></a></li>
+						<li><a href="#aol"><h4>AoL</h4></a></li>
+						<li><a href="#home"><h4>HOME</h4></a></li>						
+						<li><a href="#comment"><h4>COMMENT</h4></a></li>
+						<li><a href="#contact"><h4>CONTACT</h4></a></li>
+					</ul>
+			</div>
+		</div>
+	</nav>
+		<div class="isi">
+			<div class="row" >
+				<div class="col-sm-6 kiri">
+					<div class="text-center" style="margin-top: 50px;"><h1 style="font-size: 72px; color: #00000">COMMENT</h1></div>
+						<form style="color: black solid;" ACTION="p" METHOD="POST" NAME="input">
+							<div class="form-group" style="margin-left: 250px; margin-top: 20px;">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="exampleInputNama"><h4>Name</h4></label>
+										<input type="text" class="form-control" id="exampleInputName" placeholder="Name" style="width: 350px;">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-inline">							
+										<label for="exampleInputComment"><h4>Comment</h4></label>
+										<textarea class="form-control" id="exampleInputComment" placeholder="Your Comment Here" rows="7" style="width: 350px;"></textarea>
+										<br>
+										<br>
+										<button type="submit" class="btn btn-primary">Submit</button>
+									</div>
+								</div>
+							</div>
+						</form>
+				</div>
+				
+				<div class="col-sm-6 kanan">
+					<div class="col-sm 4" style="margin: 180px 160px 160px 160px;">
+					<h3>Komentar</h3>
+					<fieldset id="hasil" name="hasil" style="width: 350px; background-color: white">
+						kjokok
+
+					</fieldset>	  
+					</div>		
+				</div>
+					
+
+			</div>
+		</div>
+</body>
+</html>
+
+<?php
+echo 'hello world'
+?>

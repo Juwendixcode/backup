@@ -1,0 +1,50 @@
+.input-txt:focus {
+    background-color: #1BA0E2;
+    color: #000;
+	}
+	.input-txt{
+		
+		color:#D9D9D9;
+	}
+	input[name="username"]{
+		margin-top:40px;
+	}
+	input[name="login"]{
+		margin-top:30px;
+	}
+	label{		
+		margin: 0% 0% 0% 28%;		
+		color:#1BA0E2;
+		font-family:Arial;
+		font-size:30px;
+	}
+	.button-ok{
+		margin-top:15px;		
+		width:250px;
+		height:40px;
+		background-color:#1BA0E2;
+		border:0px;
+		color:white;
+		border-radius: 3px;
+		font-size:15px;
+		font-family:;
+	}		
+	input[name="register"]{
+		margin-top:5px;
+		background-color:#F97B0C;
+	}
+	.header{
+		color:white;
+		font-family:"lato";
+		font-weight:bold;
+		letter-spacing: 2px;
+		font-size:20px;
+		text-align: center;
+		padding: 12px 0px 0px 0px;
+		box-sizing: border-box;
+		margin-bottom:30px;
+	}
+	
+	.input-txt,.button-ok{
+		margin-left:30px;
+	}

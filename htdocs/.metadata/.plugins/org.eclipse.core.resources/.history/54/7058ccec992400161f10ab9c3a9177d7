@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<style type="text/css">
+	
+	input[type="submit"]{
+		margin-top:55px;
+		background-color: transparent;		
+		background-size:30px 30px;
+		background-repeat:no-repeat;
+		border:0px;
+		width:40px;
+		height:40px;
+		cursor:pointer;
+	}
+	input[name="hapus"]{
+		background-image: url(img/icon/png/garbage.png);
+	}
+	input[name="edit"]{
+		background-image: url(img/icon/png/edit.png);		
+		padding-left:10px;
+		padding-right:10px;
+		box-sizing:border-box;
+		margin-left:10px;
+		
+	}
+	
+	.editprofil{
+		width:100%;
+		color: #955404;
+        margin-left:770px;									
+	}
+	.editprofil a{
+		text-decoration:none;
+		color: #955404;
+		
+		
+		text-align:right;
+		
+	}
+	.editprofil a:hover{
+		text-decoration:underline;
+		
+	}
+	
+	</style>
+	
+</head>
+<body>
+<nav class="navbar">
+<div class="judul">My Website</div>
+	<center>
+		<ul>		
+		<?php 		
+			echo "<a href='index.php?logout=1'><li class='login'>Logout</li></a>";		
+		?>
+	    </ul>
+	</center>
+</nav>
+
+	<div class="hamburger-menu">
+			<img src="img/hamburger1.png" width="30px" height="30px" />
+		</div>
+	<div class="sidebar">
+		<?php
+		  echo "<img class='photo-profil' src='img/".$profil['photo']."' width='100px' height='100x' />";		  
+		?>
+		<div class="userlog"><h4> <?php echo ucfirst($profil['username']); ?></h4></div>
+			<a href="index.php?home=1"><div class="menu-sidebar">Home</div></a>
+			<a href="index.php?profil=1"><div class="menu-sidebar">Profil</div></a>
+			<a href="index.php?friend=1"><div class="menu-sidebar">Friend (<?php echo $teman['jumlah'];?>)</div></a>
+	</div>
+
+<div class="main">
+	
+<div class="top">
+
+<div class="timeline">
+
+<img  class="foto" src="img/<?php echo $profil['back']; ?>" width="100%" height="80%">
+
+<?php
+
+echo "<img class='user' src='img/".$profil['photo']."' >";
+
+?>
+<h2><?php echo ucfirst($profil['username']); ?></h2>
+
+<span class="editprofil">
+	<a href="index.php?editprofil=<?php echo $profil['username'];?>" >Edit Profil</a> |
+	<a href="index.php?pesanprofil=0" >Pesan</a>
+</span>
+</div>
+		
+	</div>
+</div>
+
+<div class="container">
+<div class="biodata">
+		<h3>Biodata</h3>
+		<table class="bio">
+			<tr>
+				<td>Nama</td>
+				<td>: <?php echo ucfirst($profil['username']);   ?></td>
+			</tr>
+			<tr>
+				<td>TTL</td>
+				<td>: <?php echo $profil['tanggal_lahir'];   ?></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>: <?php echo $profil['email']; ?></td>
+			</tr>
+						
+			</table>
+				<hr/>
+				<div class="friend">
+					<h3>Friend</h3>
+					<div class="friend-box">
+					<?php
+					foreach ($friendphoto as $f) {
+					$profiltemanquery=$this->model->profil_photoid($f['username']);	
+					$profilteman=$this->model->fetch($profiltemanquery);	
+					?>						
+					<a href="index.php?profilorang=<?php echo $profilteman['id_user'];?>"><img  src="img/<?php echo $profilteman['photo']; ?>" width="60" height="60" /></a>
+					<?php } ?>	
+					</div>
+				</div>	
+				</div>
+					
+				<hr class="batas" />
+				<div class="photo-container">
+					<h3>Photo</h3>
+					<?php
+					foreach ($fotosemua as $r) {
+					?>
+					<div class="img">	
+						<div class="cek">
+							<img  class="gambar2" src="gambar/<?php echo $r['url']; ?>" width="100%" height="100%"/>
+							<form method="post" action="">
+							<div class="modal-menu">
+									<input type="hidden" name="hidden_id" value="<?php echo $r['id_foto']; ?>" />
+									<a href="index.php?profilpicture=<?php echo $r['id_foto']; ?>"><img class="view" src="img/icon/png/glass.png" width="30px" height="30px"/></a>
+									<input type="submit" value="" name="edit"  /> 
+									<input type="submit" value="" name="hapus"  />									
+							</div>
+							</form>
+						</div>
+					</div>	
+					<?php }?>	
+				</div>
+
+</div>
+
+
+<script type="text/javascript" src="js/jquery-2.2.3.min.js">	
+</script>
+<script src="js/main.js"></script>
+<script>
+	$(".img").mouseover(function(){
+			$(this).find('.modal-menu').fadeIn("slow");
+		});
+		$(".img").mouseleave(function(){
+			$(this).find('.modal-menu').fadeOut("slow");
+		});				
+</script>
+
+</body>
+</html>
+
+<?php 
+
+	if(isset($_POST['hapus'])){
+		$this->hapus($_POST['hidden_id']);
+	}
+
+?>

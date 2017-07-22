@@ -1,0 +1,222 @@
+<?php
+include "koneksi.php";
+
+
+class model{
+  	
+  function __construct(){
+	$mysqli = new mysqli('localhost', 'root', 
+              '', 'praktikum');
+  }
+  function execute($query){
+			$mysqli = new mysqli('localhost', 'root', 
+                       '', 'praktikum');
+			$rs = $mysqli->query ($query);
+			return $rs;
+  }
+ 	
+  public function cekUser($user,$pass){
+   $ubah = md5($pass);	
+   $query ="Select * from user where username='$user' and password='$ubah' ";
+   return $this->execute($query);
+  }
+
+  public function cekLogin($user,$pass){	  
+	  $cek =  $this->cekUser($user,$pass) ;
+	  $data = $this->fetch($cek);
+	  if ($data['username'] != ''&& $data['password'] != '')
+	  {
+	  	 $_SESSION['username']=$user;
+		 
+	  }
+	  else
+	  {
+		echo "<script>alert('data tidak ada');</script>";			 
+	  }
+  }
+  
+  public function semua_foto(){
+  	$query = "select * from foto where username ='".$_SESSION['username']."'";
+	return $this->execute($query);
+  }
+  
+  public function semua_fotouser($user){
+  	$query = "select * from foto where username ='$user'";
+	return $this->execute($query);
+  }
+  
+  public function hitungsemua_fotouser($user){
+  	$query = "select count(*)as jumlah from foto where username ='$user'";
+	return $this->execute($query);
+  }
+  
+  public function semua_user(){
+  	$query = "select * from user";
+	return $this->execute($query);
+  }
+  
+  public function semua_pesan(){
+  	$query = "select * from pesan order by id_pesan desc";
+	return $this->execute($query);
+  }
+  
+  public function profil_session(){
+  	$query = "select * from profil where username ='".$_SESSION['username']."'";
+	return $this->execute($query);
+  }
+  
+  public function profil_id($id){
+  	$query = "select * from profil where id_user ='$id'";
+	return $this->execute($query);
+  }
+  public function profil_user($user){
+  	$query = "select * from profil where username ='$user'";
+	return $this->execute($query);
+  }
+  
+  public function friend_sessionid($id){
+  	$query = "select * from friend where id_user ='$id'";
+	return $this->execute($query);
+  }
+
+	public function friend_id($id){
+  	$query = "select * from friend where id_user ='$id'";
+	return $this->execute($query);
+  }
+  
+  public function profil_photoid($user){
+  	$query = "select * from profil where username ='$user' ";
+    return $this->execute($query);
+  }
+  
+  public function profilpicture($id){
+  	$query = "select * from foto where id_foto ='$id' ";
+    return $this->execute($query);
+  }
+  
+  public function komen_id($id)
+  {
+     $query = "select * from comments where id_foto='$id' ";
+     return $this->execute($query); 
+  }
+  public function tambahkomentar($id,$komen,$user)
+  {
+  	$profil = $this->profil_user($user);
+	$dataprofil = $this->fetch($profil);	
+	
+  	$query = "insert into comments (username,text,url,id_foto)values('$user','$komen','".$dataprofil['photo']."','$id')";
+	return $this->execute($query);
+  }
+  public function tambahlike($id,$user)
+  {
+    $profil = $this->profil_user($user);
+	$dataprofil = $this->fetch($profil);
+	  	
+    $query = "insert into likes(id_foto,id_user,username,tanggal_like,jam_like)values
+	('$id','".$dataprofil['id_user']."','$user',curdate(),curtime())";
+	return $this->execute($query);	
+  }
+  
+  public function ceklike($id,$username)
+  {
+      $query = "select * from likes where id_foto='$id' and username='$username'";
+	  return $this->execute($query);
+  }
+  
+  public function cekteman($id,$username){
+  	$query = "select * from friend where id_user='$id' && username='$username'";
+  	return $this->execute($query);
+  }
+  
+  public function tampilbelumdiadd($username){
+  	$query="SELECT * FROM USER 
+  	WHERE ID_USER NOT IN( SELECT P.ID_USER FROM USER U JOIN friend T 
+  	ON U.ID_USER = T.ID_USER JOIN USER P ON T.USERNAME = P.USERNAME 
+  	WHERE U.username ='$username')and username <> '$username' and username <> 'admin'";
+  	return $this->execute($query);
+  }
+  
+  public function tambahteman1($iduser,$username){	  	
+  	$query="insert into friend (id_user,username)  values('$iduser','$username')";  	
+	return $this->execute($query);
+  }
+  public function tambahteman2($iduser,$username){	  	
+  	$query="insert into friend (id_user,username)  values('$iduser','$username')";  	
+	return $this->execute($query);
+  }
+  public function tambahreport($id,$user,$email,$pengirim,$subject,$pesan){
+  	$query = "insert into pesan (id_foto,username,email,pengirim,subject,pesan,tanggal_pesan) 
+  	values('$id','$user','$email','$pengirim','$subject','$pesan',curdate())";
+	return $this->execute($query);
+  }
+  public function tambahposting($user,$file,$text){
+		
+	$query = "insert into foto (username,url, caption,jam_posting,tanggal_posting) 
+		values ('$user','$file','$text',curtime(),curdate())";
+	return $this->execute($query);
+  }
+  
+  public function hapusfoto($id)
+  {
+      $query = "delete from foto where id_foto='$id'";
+	  return $this->execute($query);
+  }
+  
+  public function foto_posting($user)
+  {
+      $query="select u.*, f.id_foto,f.username as userfriend,f.url,f.caption,f.tanggal_posting,f.jam_posting
+       from user u join foto f on u.username=f.username where u.id_user in 
+       (SELECT P.ID_USER FROM USER U JOIN friend T ON U.ID_USER = T.ID_USER JOIN USER P 
+       ON T.USERNAME = P.USERNAME WHERE U.username ='hanif') UNION select u.*,f.id_foto,f.username 
+       as userfriend,f.url,f.caption,f.tanggal_posting,f.jam_posting from user u join foto f 
+       on u.username=f.username where u.username='hanif' ORDER by id_foto desc
+	   ";
+	  
+	  return $this->execute($query);
+  }
+  
+  public function jumlahKomentar($id)
+  {
+    $query = "select count(*)as jumlah from comments where id_foto = '$id'";
+	return $this->execute($query); 
+  }
+  public function jumlahLike($id){
+  	$query = "select count(*)as jumlah from likes where id_foto = '$id'";
+	return $this->execute($query);
+  }
+  
+  public function jumlahTeman($id){
+  	$query= "select  count(*)as jumlah from friend where id_user = $id";
+	return $this->execute($query);
+  }
+  
+  
+  function fetch($var){
+	return mysqli_fetch_array($var);
+  }
+
+  public function tambahprofil($username,$email,$date,$fileName)
+  {
+  	$query= "insert into profil values('','$username','$email','$date','','$fileName','') ";
+  	return $this->execute($query);	
+  }
+  
+  public function tambahuserdata($username,$password,$email)
+  {
+  	$query= "insert into user values (NULL,'$username','$password','$email',curdate(),NULL)";
+  	return $this->execute($query);	
+  }
+    
+  public function tambahuser($username,$password,$email,$date,$fileName)
+  {
+  	$cek  = $this->tambahprofil($username, $email,$date, $fileName);  	
+  	$cek2 = $this->tambahuserdata($username, $password, $email);	
+	return true;
+  }
+  
+	
+}
+
+
+?>
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Karakter set utf-8 paling direkomendasikan karena bersifat universal -->
+	<meta charset="utf-8">
+
+	<!-- Untuk optimalisasi tampilan di browser yg berbeda -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Biography</title>
+
+	<!-- link ke file Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<!-- JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.7.1.min.js"></script>
+
+	<!-- link ke file CSS custom -->
+	<style type="text/css">
+	.isi{			
+		background-repeat: no-repeat;
+		height: 587px;
+		overflow: hidden;
+	}
+	.kiri{		
+		height: 587px;
+	}
+	.kanan{
+		height: 587px;
+		
+	}	
+	.about{
+		margin-left:25%;
+		position: absolute;
+		top:20%;
+	}
+	.teks{
+		margin-left:25%;
+		top:32%;
+		position: absolute;
+		width: 400px;
+	}
+	#aboutme {
+		width: 100%;
+		height: 100%;
+	animation: fadeInLeft 3s;
+	-webkit-animation: fadeInLeft 3s;
+	}
+	.hanif{
+		margin-left: 35%;
+		margin-top: 10%;
+		animation: fadeIn 4s;
+	}
+	.ha{
+		filter: grayscale(50%);
+		-webkit-filter: grayscale(50%);
+	}
+	
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top" style="margin: 0px; background-color: #1A2633;" >
+		
+		<div class="container">			
+			<div class="navbar-header navbar-left">
+				<ul class="nav navbar-nav" style="margin-left: 300px; padding-top: 10px;">
+						<li><a href="bio.html"><h4>BIOGRAPHY</h4></a></li>
+						<li><a href="aol.html"><h4>ALBUM</h4></a></li>
+						<li><a href="home.html"><h4>HOME</h4></a></li>						
+						<li><a href="comment.php"><h4>COMMENT</h4></a></li>
+						<li><a href="contact.html"><h4>CONTACT</h4></a></li>
+					</ul>
+			</div>
+		</div>
+	</nav>
+		<div class="isi">
+			<div class="row" style="">
+				<div class="col-sm-6 kiri">
+					<div id="aboutme">
+					<h1 class="about">About Me</h1>				
+					<h4 class="teks text-justify">
+					 Name  : <b>Hanif Rafidi</b><br>
+					 Born  : <b> Bontang 21-08-95</b> <br>
+					 Hobby : <b>Read Comic,Watch Movie</b><br><br>
+					 Someone who just learning a Html language, doesnt know how 
+					 to use it but trying to love it. As student in some big
+					 university who had many project and task that make him sleep,
+					 but trying to survive and enjoy with his life. Now he
+					 want to make a plan for the best future with this language.<br> 
+					 I Hope You Enjoy it!<br>
+					 -____-	
+					 </h4>	
+					</div>
+				</div>
+				<div class="col-sm-6 kanan">
+					<div class="hanif">
+					<img src="images/foto.jpg" class="img-thumbnail ha" width="250px" height="150px">
+				</div>
+			</div>
+		</div>
+   		
+
+
+</body>
+<script type="text/javascript">
+	$(function(){
+    $('.fadein img:gt(0)').hide();
+    setInterval(function(){
+      $('.fadein :first-child').fadeOut()
+         .next('img').fadeIn()
+         .end().appendTo('.fadein');}, 
+      7000);
+});
+</script>
+</html>

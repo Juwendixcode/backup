@@ -1,0 +1,44 @@
+<?php
+include "controller/controller.php";
+
+session_start();
+$controller = new controller();
+
+
+	if (isset($_GET['register'])){
+		$controller -> view_register();
+	}
+	elseif (isset($_GET['login'])){
+		$controller -> view_login();
+	}
+	elseif (isset($_GET['profil'])){
+	$controller -> view_profil();
+	}
+	elseif (isset($_GET['pemesanan'])){
+		$controller -> view_pemesanan();
+	}
+	elseif (isset($_GET['syarat'])){
+		$controller -> view_syarat();
+	}
+	elseif (isset($_GET['formrefund'])){
+	$controller -> view_formrefund();
+	}
+	elseif (isset($_GET['detailrefund'])){
+	$controller -> view_detailrefund();
+	}	
+	elseif (isset($_SESSION['username'])){
+		$controller -> view_profil();
+	}
+	elseif (isset($_GET['log'])){
+	$controller -> logs();
+	}
+	elseif (isset($_GET['logout'])){
+		$controller -> logout();
+	}			
+	else {		
+		$controller -> view_login();
+	}
+	
+		
+
+?>

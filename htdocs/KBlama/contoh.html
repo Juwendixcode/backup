@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script> 
+</head>
+<body>
+
+<form>
+	
+<input type="submit" name="tampilkan" value="tampilkan" id="tampilkan">
+<input type="submit" name="sembunyikan" value="sembunyikan" id="sembunyikan">
+
+</form>
+
+<div class="content" style="height: 20px; scroll-behavior: auto;">            
+      
+</div>
+
+</body>
+</html>
+
+<script>
+$(document).ready(function(){                                  
+    $("#tampilkan").on("click", function(){
+    	event.preventDefault();
+    		$.ajax({
+	            url         : "http://localhost/KB/php/data.json",//lokasi dokumen yang berisi data json
+	   		    type        : "GET",
+	    		dataType    : "json",//format dokumen	    
+	    		// url         : "http://webqu.hostoi.com/webqu/php/data.php",//lokasi dokumen yang berisi data json
+	   		 //    type        : "GET",
+	    		// dataType    : "jsonp",//format dokumen	    
+	    		// url         : "http://localhost:80/KB/php/kasir.json",//lokasi dokumen yang berisi data json
+	   		 //    type        : "GET",
+	    		// dataType    : "jsonp",//format dokumen	    				
+	    		success     : function(data){	    			
+	    		 var trHTML = '';                
+                 $.each(data, function(ix, nilai){                                      
+                  trHTML += 'ID_Kasir : '+data[ix].ID_Kasir+'<br>Kasir_username : '+data[ix].Kasir_username+'<br>Password : '+data[ix].Password+'<br>Nama : '+data[ix].Nama+'<br>ID_Jenis_kelamin : '+data[ix].ID_Jenis_kelamin+'<br><br>'                  			
+                 });
+                 $('.content').html(trHTML);
+	    		}
+    		});                        
+         });
+	    $("#sembunyikan").on("click", function(){
+
+	    	$('.content').empty();
+
+	    });
+});
+</script>

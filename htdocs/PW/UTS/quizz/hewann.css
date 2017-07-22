@@ -1,0 +1,35 @@
+body{
+	color: white;
+}
+#searchhome{
+	background: url(bg2.2.jpg);	
+}
+
+#formcari{
+	text-align: center;
+}
+
+#hasilbg{
+	background-color: grey;
+	text-align: center;
+}
+
+#kucing{
+	width: 500px;
+	height: 500px;
+}
+
+#sapi{
+	width: 500px;
+	height: 500px;
+}
+
+#kelinci{
+	width: 500px;
+	height: 500px;
+}
+
+#semut{
+	width: 500px;
+	height: 500px;
+}

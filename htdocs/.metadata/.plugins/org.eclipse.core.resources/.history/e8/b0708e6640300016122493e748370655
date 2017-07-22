@@ -1,0 +1,270 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<style>	
+	.big-box{
+		font-family: OpenSans;
+		width:1000px;
+		height: 600px;
+		background-color:white;
+		border-radius: 3px;
+		box-sizing: border-box;
+		overflow: hidden;		
+		box-shadow: 3px 2px 2px 3px #555;
+		margin:2% 0px 0px 15%;
+	}
+	.sidebar{
+		width: 200px;
+		height: 100%;
+		background-color:#1BA0E2;
+		color: white;
+		
+		overflow: hidden;
+		position: relative;
+		float: left;
+	}
+	.logout{
+		position: absolute;
+		bottom:20px;
+		left:70px;
+		color: #FFA14B;
+	}
+	
+	.sidebar > a{
+		text-decoration:none;
+	
+	}
+	.logo{
+		width:: 100%;
+		height: 20%;
+		font-size:30px;
+		padding : 50px 0px 0px 30px;
+		margin-bottom:80px;		
+	}
+	.menu{
+		width: 100%;
+		height: 6%;
+		font-size: 20px;
+		padding : 5px 0px 0px 50px;
+		transition: 0.7s;
+		color: white;
+	}
+	
+	.menu:hover{
+		border-left:5px solid white;
+		padding : 5px 0px 0px 55px;
+		transition: 0.7s;
+	}
+	
+	.cek{
+		border-left:5px solid white;
+		padding : 5px 0px 0px 55px;
+		transition: 0.7s;
+	}		
+	.main{
+		width: 800px;
+		height: 100%;			
+		float: left;		
+	}
+	.main-logo{
+		width: 35%;
+		height: 100%;		
+		float: left;
+	}	
+	.content{
+		width: 65%;
+		height: 100%;
+		float: left;
+		overflow: auto;
+		
+	}
+	.content  a{
+	    text-decoration: underline;
+		
+	}
+	.main-icon{
+		margin-top:120px;
+		margin-left:10px;
+	}
+	
+	.ticket{
+		width: 100%;
+		height: 17%;
+		border-bottom:1px solid #D6D2D2;
+		color: black;
+		padding : 50px 0px 0px 0px;
+	}
+	
+	.kodebook{
+		width:100%;
+		height: 50px;
+		background-color:#F0F0F0;
+		padding : 15px 0px 10px;
+		text-align:center;
+		box-sizing: border-box;			
+	}
+	.maskapai{
+		width:100%;
+		height: 50px;
+		padding : 15px 0px 10px;
+		text-align:center;
+		box-sizing: border-box;
+	}			
+	.maskapai span{
+		font-size: 17px;		
+	}
+	
+	.jadwal{
+		width:100%;
+		height: 150px;
+		box-sizing: border-box;
+		padding-top:10px;
+	}	
+	.penumpang{
+		width:100%;
+		height: 200px;
+		
+		overflow: auto;
+	}
+	
+	
+	.ticket-status{
+		width:32%;
+		height: 25px;
+		border-radius: 3px;
+		font-weight:bold;
+		color: white;
+		box-sizing: border-box;
+		padding:2px 5px 5px 15px;
+		background-color: #02D702;
+	}
+	.refund-ok{
+		background-color: #02D702;
+	}
+	.refund-no{
+		background-color: #FA0000;
+	}
+	
+	.butt{
+		background-color:#1BA0E2;
+		border: 0px;
+		border-radius:3px;
+		width:100px;
+		height: 35px;
+		color:white;
+		margin:15px 0px 0px 0px;
+		font-size: 15px;
+				
+	}
+	input[name="refund"]{
+		margin-left:150px;
+		margin-right:30px;
+	}
+	
+	
+</style>
+
+</head>
+<body style="background-color:#1BA0E2;">
+
+
+
+<div class="big-box">
+	<div class="sidebar">
+		<div class="logo">
+			Traveloka
+		</div>
+		<a href="index.php?profil=1">
+		<div class="menu">
+			HOTEL
+		</div>
+		</a>
+		<a>
+		<div class="menu">
+			PESAWAT
+		</div>
+		</a>
+		<a href="index.php?pemesanan=1">
+		<div class="menu cek">
+			PEMESANAN
+		</div>
+		</a>
+	<a class="logout" href="index.php?logout=1"?>Logout</a>		
+	</div>
+	<div class="main">
+		<div class="main-logo">
+			<img class="main-icon" src="gambar/ticket.svg" width="250" height="250" />
+
+		</div>
+		<div class="content">						
+				<div class="ticket">
+					<div class="kodebook">
+						<span>Booking Kode : <span style="color:#02D702;"><?php echo $tiket['code_booking'];?></span></span>
+					</div>
+					<div class="maskapai">
+						<span> <?php echo $tiket['maskapai']?></span>
+					</div>
+					<div class="jadwal">
+						<table>
+							<tr>
+								<td>
+									Kota asal :
+								</td>
+								<td>
+									<?php echo $tiket['asal']?>
+								</td>
+							</tr>
+							<tr>
+									<td><?php echo ucfirst($tiket['bandara_asal'])?></td>
+									<td></td>
+									<td><?php echo $tiket['jam_pergi']?></td>
+							</tr>
+							<tr>
+								<td><hr /></td>
+								
+							</tr>
+															
+							<tr>
+								<td>
+									Kota Tujuan :
+								</td>
+								<td>
+									<?php echo $tiket['tujuan']?>
+								</td>
+							</tr>
+							<tr>
+									<td><?php echo ucfirst($tiket['bandara_tuj'])?></td>
+									<td></td>
+									<td><?php echo $tiket['jam_tiba']?></td>
+							</tr>														
+						</table>
+					</div>
+					<hr />
+					<div class="penumpang">
+						<span>Penumpang <?php echo $tiket['jumlah_peg'];?></span>			<br /><br />			
+							<?php foreach ($penumpang as $penumpang) {
+								
+							  ?>
+							
+								<span><?php echo $penumpang['title'] ?><?php echo $penumpang['nama_penumpang'] ?>
+									</span>								
+														
+							<?php }?>
+						
+					</div>
+					<form method="post">
+					<?php if($tiket['status_refund']=='bisa'){   ?>	
+					<input class="butt yes" type="submit" name="refund" class="refund" value="refund" disabled="disabled" /> 	
+					<?php }else{?>
+					<input class="butt no" type="submit" name="refund" class="refund" value="refund"  />
+					<?php }?>
+					<input class="butt" type="submit" name="back" class="refund" value="back" />
+					</form>
+				</div>													
+		</div>		
+	</div>	
+
+</div>
+
+</body>
+</html>

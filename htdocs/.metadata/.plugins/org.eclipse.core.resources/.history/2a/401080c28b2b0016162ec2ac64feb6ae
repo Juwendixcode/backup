@@ -1,0 +1,327 @@
+<?php $controller = new controller(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	<title></title>
+	
+	<style type="text/css">
+		body{
+			margin:0px;
+			padding:0px;
+		}
+		html,body {
+		    height:96%;
+		    
+		}
+		
+		.container{
+			padding-bottom:100px;
+		}
+	input[name="comment"]{
+		border:0px;
+		background-color:transparent;
+		font-family:QuickSand;
+		font-size:17px;
+	}
+		
+		input[name="submit"]{
+			background-color:#B1844D;
+			font-family:QuickSand-Regular;
+			border:0px;
+			height:30px;
+			color:white;
+		}
+		
+		
+		input[name="hapus"]{
+			border:0px;
+			/*
+			background:url(img/street.jpg);
+			background-repeat:no-repeat;
+			background-size:cover;
+			*/
+			background-color:transparent;
+			font-family:QuickSand-Regular;
+			font-size:16px;
+			width:50px;
+			margin:0px;
+			padding:0px;
+			cursor:pointer;			
+		}
+
+		
+		.f{
+			margin:0px;
+			padding:0px;
+		}
+				.editkomen{
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			visibility: hidden;
+		}
+		
+		.komens:hover .editkomen{
+			visibility: visible;
+		}		
+								
+		.input{
+			background-color:transparent;
+			border: 0px;
+			color:#B1844D;
+			cursor: pointer;	
+			font-size:13px;
+			margin-left:10px;			
+		}
+		
+	input[name="hapuskomen"]{			
+		background-color:transparent;
+			border: 0px;
+			color:#B1844D;
+			cursor: pointer;	
+			font-size:13px;
+		margin-left:10px;
+	}
+	.editkomen{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		visibility: hidden;
+		width:100px;
+	}
+	
+	
+	.boxhidden{
+		width: 20%;
+		height: 17%;
+		position:fixed;
+		z-index:199;
+		top:300px;
+		left:500px;
+		background-color: rgba(0,0,0,0.5);					
+		display:none;
+	}
+	
+	.editx{
+		width:100%;
+		height:25px;
+		border:0px;
+		background-color:#B1844D;
+		position: absolute;
+		bottom:0px;
+		left:0px;
+		color: #D7C7AF;		
+	}
+	
+	.closex{
+		border:0px;
+		background-color:#B1844D;
+		position: absolute;
+		top:-5px;
+		right:-10px;
+		color: white;		
+		border-radius: 100%;
+	}
+	.padform{
+		padding: 0px;
+		margin:0px;
+		width:40px;
+		float:left;
+	}
+	.sform{
+	
+		padding: 0px;
+		margin:0px;
+	
+	}
+	
+	</style>
+
+</head>
+<body>
+<nav class="navbar">
+<div class="judul">
+<img src="img/Iconweb/logo fix sementara.png" width="80" height="80" style="margin-left:50px;"/>
+<img src="img/Iconweb/photokopi.png" width="200" height="75" />
+</div>
+	<center>
+		
+		<ul style="margin-top:0px;">		 		
+		<a href='index.php?logout=1'><li class='login'><img src="img/Iconweb/logout.png" width="40" height="40" /></li></a>		
+		</ul>    
+	</center>
+</nav>
+	
+	<div class="container" style="">
+	<div class="status">
+	<p>Status</p>
+	<form method="post" enctype="multipart/form-data" action="<?php $this->posting();  ?>">	
+	<input type="text" value="" name="title" style="width: 580px;" placeholder="title"/>
+	<hr />
+	<textarea name="tags" cols="80" rows="3" placeholder="Tags"></textarea>
+	<hr>
+	<input class="button-ok" type="submit" value="share" name="save"></input>
+	<div class="image-upload">
+	    <label for="file-input">
+	        <img src="img/camera.svg" width="50" height="50"/>
+	    </label>	
+	  <input id="file-input" type="file" name="gambar" required="required"/>
+	</div>
+	<img id="preview" alt="your image" width="200px" height="200px" style="display: none; margin-left:200px;" />
+	</form>
+    
+    </div>
+		
+<?php  foreach ($foto as $key) {
+	$query = $this->model->profil2($key['id_user']);
+	$pdata = $this->model->fetch($query);
+   ?>
+<div class="frame" style="width:430px; margin-top:20px;">
+	<div class="top-frame">
+		<div class="foto-profil" >
+		<a href="index.php?profilorang=">
+		<img src='gambar/<?php echo $pdata['pp'] ?>' 
+		width='100%' height='100%'style='border-radius: 100%; border:1px white solid' >
+		
+		</a>
+		</div>
+		<h4><?php echo $pdata['username']?></h4>
+		<p></p>
+	</div>
+
+	<div class="upload-foto" style="width: auto; height: auto;">
+<a href="index.php?profilpicture=">
+<img class='foto-upload' src='gambar/<?php echo $key['path'] ?>' width='100%' height='auto' > 
+</a>
+	</div>
+	
+	<div class="menu-foto" style="margin-left:130px;">
+		<img  src="img/tombol.png" width="40px">
+		<form method="post" action="<?php $this->hapus_foto();?>">
+		<div class="submenu">				
+				<input type="text" name="ckck" value="<?php echo $key['id_user'];?>" />										
+				<input type="hidden" value="" />
+				
+				<li><span class="report">Report</span>
+				<input type="hidden" name="hiddenid" class="hiddenid" value="" />
+				<input type="hidden" name="hiddenname" class="hiddenname" value="" />	
+				</li>
+											
+				<li><input type='submit' class="hapus" value="Hapus" name="hapus"/></li>
+				<hr>
+				
+				
+		</div>
+		</form>
+	</div>
+	
+	<hr>
+	<div class="caption">
+		<span><?php echo $key['title'].' '.$key['tags']  ?></span>
+		<form class="f" action="<?php $this->likes(); ?>" method="post">
+		<input type="hidden" name="idfoto" value="<?php echo $key['id_foto'];?>" />
+		<input type="hidden" name="iduser" value="<?php echo $profil['id_user']?>" />			
+		<ul  style="margin-left: 240px;">											
+			<?php 
+			$cekquery = $this->model->ceklike($key['id_foto'],$profil['id_user']);
+			$cek = $this->model->fetch($cekquery);			
+			if ($cek['id_user']!=$profil['id_user']&&$cek['id_foto']!=$key['id_foto']){
+			?>												
+			<input type="submit" name="like" value="" /> <?php echo $key['likes']  ?>  			
+			<?php }else{?>
+						
+			<input type="submit" name="liked" value="" /> <?php echo $key['likes']  ?>
+			<?php }?>  														
+			</form>	
+		</ul>
+	</div>
+	
+</div>
+<?php } ?>
+<div class="modal">
+	<div class="text-box">
+		
+	</div>	
+</div>
+
+
+</div>
+	</div>
+<div class="report-luar">	
+<div class="report-box">
+<span id="closes" class="close">x</span>	
+	<form method="post">
+	<table>
+	<tr>
+			<td>
+			<label> Subject</label>
+			</td>
+			<td>
+				<select name="subject">
+					<option value="SARA">SARA</option>
+					<option value="PORNOGRAFI">PORNOGRAFI</option>
+				</select>
+			</td>	
+	</tr>
+	<tr>
+			<td>
+				<label>Email</label>
+			</td>
+			<td>
+				<label><?php echo $profil['email'];  ?></label>
+			</td>
+	</tr>
+	<tr>	
+			<td>
+				<label> Username </label>
+			</td>
+			<td>
+				<label><?php echo $profil['username'];  ?></label>
+			</td>
+	</tr>
+	</table>
+		
+			<input name="hidden-id" class="ckck" type="hidden"   value="" />
+			<input name="hidden-name" class="wkwk" type="hidden"   value="" />			
+			<label>Pesan</label><br>
+			<textarea name="pesan" rows="5" cols="50" style="white-space: normal;">				
+			</textarea>
+			<input name="report" type="submit" value="Report" />
+		</form>
+</div>
+</div>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js">	
+</script>
+<script type="text/javascript" src="js/main.js">
+</script>
+<script>
+	if( $('.boxhidden').is(':hidden') ) {	
+	$(".editt").click(function(){
+	              $(this).parentsUntil("editkomen").next('.hiddenkomen').find('.boxhidden').fadeIn("slow");
+	 					 				
+	});
+	}	
+	$(".closex").click(function(){
+	  $( ".boxhidden" ).fadeOut("slow");	  			  					  			 			
+	});
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#file-input").change(function(){
+        readURL(this);
+        $('#preview').show();
+    });
+</script>
+</body>
+</html>

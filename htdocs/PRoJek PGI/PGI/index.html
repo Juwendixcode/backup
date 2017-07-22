@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/css.css">
+
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <div id="map">
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCmSFBWTRwoo4b6mz0HGEgC7EJ041u1iQ"></script>
+
+    <div class="logo">
+      <img src="images/logo.png" alt="" width="100%" height="100%">
+    </div>
+    <div class="legenda">
+      <img src="images/legend.png" width="100%" height="100%">
+    </div>
+    <div id="hideit">
+      <img src="images/sidepane_hide.png" alt="" width="100%" height="100%">
+    </div>
+    <div id="showit">
+      <img src="images/sidepane_show.png" alt="" width="100%" height="100%">
+    </div>
+    <div id="sidebar">      
+      <div class="photo">
+        <img class="ph" src="" alt="" width="100%" height="100%" />
+      </div>
+      <div class="info">
+        <li class="clr one">
+        </li>
+        <hr>
+        <li class="infonya two">
+          <img src="images/address.png" alt="address" width="10%" height="35%">
+          <span ></span>
+        </li>
+        <li class="infonya three">
+          <img src="images/contact.png" alt="address" width="10%" height="35%">
+          <span></span>
+        </li>
+        <li class="infonya end">
+          <img src="images/operational.png" alt="address" width="10%" height="35%">
+          <span></span>
+        </li>
+        <hr>
+        <div class="infotambahan">
+          <h2 class="clr">About</h2>
+          <span></span>
+        </div>
+        <div class="clear"></div>
+        <footer>
+          <center>
+            GeoMedic 2016 - 2017
+          </center>
+        </footer>
+      </div>
+    </div>
+    
+  </body>
+<script>
+  $(document).ready(function(){
+      if( $('#showit').is(':visible')){
+        $('#showit').on( 'click',function(){
+          $('#sidebar').animate({ 'width': '25%' }, 'slow', function(){
+              $('#sidebar').show("slow");
+          });
+          $('#showit').animate({ 'right': '25%' }, 'slow', function(){
+              $('#showit').css('visibility','hidden');
+              $('#showit').css('right','0px');
+              $('#hideit').css('visibility','visible');
+          });
+        });
+      };
+      if($('#hideit').is(':visible')) {
+        $('#hideit').on( 'click',function(){
+          $('#sidebar').animate({ 'width': '0px' }, 'slow');
+          $('#hideit').animate({ 'right': '0px' }, 'slow', function(){
+              $('#hideit').css('visibility','hidden');
+              $('#hideit').css('right','25%');
+              $('#showit').css('visibility','visible');
+          });
+
+        });
+      }      
+  });
+ </script>
+
+</html>

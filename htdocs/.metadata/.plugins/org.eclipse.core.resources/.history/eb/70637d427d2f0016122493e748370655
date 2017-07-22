@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<style>
+	.input-txt:focus {
+    background-color: #1BA0E2;
+    color: #000;
+	}
+	.input-txt{
+		margin-left:10px;
+		color:#D9D9D9;
+	}
+	input[name="username"]{
+		margin-top:30px;
+	}
+	input[name="login"]{
+		
+	}
+	label{		
+		margin: 0% 0% 0% 28%;		
+		color:#1BA0E2;
+		font-family:Arial;
+		font-size:30px;
+	}
+	.button-ok{
+		margin-top:15px;		
+		width:303px;
+		height:50px;
+		background-color:#1BA0E2;
+		border:0px;
+		color:white;
+		border-radius: 3px;
+		font-size:15px;
+		font-family:;
+	}		
+	input[name="register"]{
+		margin-top:5px;
+		background-color:#F97B0C;
+	}
+	.header{
+		color:white;
+		font-family:"lato";
+		font-weight:bold;
+		letter-spacing: 2px;
+		font-size:20px;
+	}
+						
+	</style>
+
+
+</head>
+<body style="background-color:#1BA0E2;">
+
+<div style=" width: 330px; height: 325px; background-color: white; margin:8% 0px 0px 35% ; padding-top: 0px; padding-left:0%; border-box:box-sizing;">
+	<div class="header" style="width:100%; height: 15%; background-color:#1C86BA;">
+		<span>TRAVELOKA</span>
+	</div>
+	<form method="post" action="<?php $this->ceklogin()?>">
+		<table>
+			<tr>
+			<td><label>Traveloka</label></td>
+			</tr>
+			<tr>
+				<td><input type="input" name="username" class="input-txt"
+				placeholder="Username" style="
+				height:40px;				
+				width :270px;
+				font-size:17px;
+				background-color:white;  				
+				border-top:0px;
+				border-right:0px;
+				border-left:0px;
+				border-bottom:1px #D9D9D9 solid; " />
+				</td>	
+			</tr>	
+			<tr>
+				<td><input type="password" name="password" class="input-txt" 
+				placeholder="Password" style="height:40px;
+				background-color:white;  				
+				height:40px;				
+				width :270px;
+				font-size:17px;
+				border-top:0px;
+				border-right:0px;
+				border-left:0px;
+				border-bottom:1px #D9D9D9 solid; " />
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" name="login" value="Login" class="button-ok" />					
+				</td>				
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" name="register" value="Register" class="button-ok" />					
+				</td>				
+			</tr>
+			
+		</table>
+		
+	</form>
+		
+</div>
+
+</body>
+</html>

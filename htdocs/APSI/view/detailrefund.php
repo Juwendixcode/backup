@@ -1,0 +1,73 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/detailrefund.css">
+</head>
+<body style="background-color:#1BA0E2;">
+
+
+
+<div class="big-box">
+	<div class="sidebar">
+		<div class="logo">
+			Traveloka
+		</div>
+		<a href="index.php?profil=1">
+		<div class="menu">
+			HOTEL
+		</div>
+		</a>
+		<a>
+		<div class="menu">
+			PESAWAT
+		</div>
+		</a>
+		<a href="index.php?pemesanan=1">
+		<div class="menu cek">
+			PEMESANAN
+		</div>
+		</a>
+	<a class="logout" href="index.php?logout=1"?>Logout</a>		
+	</div>
+	<div class="main">
+		<div class="box-detail">
+			<center><span>Detail Refund Tiket</span></center>
+			<table class="ok">
+				<tr>
+					<td>Email</td> 
+					<td><?php echo $tiket['email']; ?></td>
+				</tr>				
+				<tr>
+					<td>Maskapai</td>
+					<td><?php echo $tiket['maskapai']; ?></td>
+				</tr>				
+				<tr>
+					<td>Asal</td>
+					<td><?php echo $tiket['asal']; ?></td>
+				</tr>				
+				<tr>
+					<td>tujuan</td>
+					<td><?php echo $tiket['tujuan']; ?></td>
+					
+				</tr>				
+				<tr>
+					<td>Tanggal</td>
+					<td><?php echo $tiket['jadwal_ticket']; ?></td>
+				</tr>				
+				<tr>
+					<td>Jumlah Penumpang</td>
+					<td><?php echo $tiket['jumlah_peg']; ?></td>
+				</tr>
+				<tr>
+					<td>Status Refund</td>
+					<td><?php echo $tiket['status_ticket']; ?></td>
+				</tr>
+				
+			</table>				
+			
+		</div>
+	</div>	
+
+</div>
+
+</body>
+</html>

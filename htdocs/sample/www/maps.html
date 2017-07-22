@@ -1,0 +1,39 @@
+<html>
+<head>
+<link href="css/main.css" rel="stylesheet">
+    
+<title>Geolocation</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">    
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCmSFBWTRwoo4b6mz0HGEgC7EJ041u1iQ"
+    async defer></script>
+  <script src='cordova.js'></script> 
+
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+
+<style type="text/css">
+* { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); -ms-touch-action:none;} 
+</style>
+
+
+</head>
+<body style="border:0;margin:0;padding:0;">
+  <center>
+  <nav class="nav">
+    <a href="index.html">
+        <img src="images/logo.png" alt="logo" class="logo">
+    </a>
+  </nav>
+</center>
+  <div class="tab">
+      <a href="admin.html">  
+        <div class="kiri" >List Kost</div>
+      </a>
+        <div class="kanan" style="font-weight:bold">Maps</div>  
+  </div>
+    <div id="map_canvas" style="width:100%; text-align:center;"></div>          
+
+</body>
+</html>

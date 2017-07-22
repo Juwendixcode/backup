@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: arepnandur
+        psr4_prefix: arepnandur
+        src_path: app

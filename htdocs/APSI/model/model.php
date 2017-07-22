@@ -1,0 +1,109 @@
+<?php
+include "koneksi.php";
+			class  user {
+	
+	  function __construct(){
+		$mysqli = new mysqli('localhost', 'root', 
+	              '', 'apsi');
+	  }
+	  function execute($query){
+				$mysqli = new mysqli('localhost', 'root', 
+	                       '', 'apsi');
+				$rs = $mysqli->query ($query);
+				return $rs;
+	  }
+	   public function fetch($var){
+		return mysqli_fetch_array($var);
+	  }
+	   
+	   public function input_register($username,$password,$email)	
+  		{
+      	$query = "INSERT INTO `user` (`id_user`, `username`, `password`, `email`) VALUES (NULL, '$username', '$password', '$email');";			
+		return $this->execute($query);
+	  }
+	  public function cek_login($email,$pass)
+  		{
+      $query = "select * from user where email = '$email' and password = '$pass'";      			
+	  return $this->execute($query);
+  		}
+	   
+}
+class  ticket {
+	
+	  function __construct(){
+		$mysqli = new mysqli('localhost', 'root', 
+	              '', 'apsi');
+	  }
+	  function execute($query){
+				$mysqli = new mysqli('localhost', 'root', 
+	                       '', 'apsi');
+				$rs = $mysqli->query ($query);
+				return $rs;
+	  }
+	   public function fetch($var){
+		return mysqli_fetch_array($var);
+	  }
+	   
+	  public function getdataticket($email)
+  		{
+      $query = "select * from ticket where email = '$email'";
+      return $this->execute($query);
+  		}
+  		public function getdataticket2($no)
+  		{	
+      $query = "select * from ticket where no_ticket = '$no'";
+      return $this->execute($query);
+  		}
+  		public function ubah($id)
+  		{
+    	$query = "update ticket set status_ticket ='refund' where no_ticket ='$id'";
+    	return $this->execute($query);
+  		}	  
+}
+class  penumpang {
+	
+	  function __construct(){
+		$mysqli = new mysqli('localhost', 'root', 
+	              '', 'apsi');
+	  }
+	  function execute($query){
+				$mysqli = new mysqli('localhost', 'root', 
+	                       '', 'apsi');
+				$rs = $mysqli->query ($query);
+				return $rs;
+	  }
+	   public function fetch($var){
+		return mysqli_fetch_array($var);
+	  }
+	   
+	 public function getpenumpang($no)
+ 	 {
+  	 $query = "select * from penumpang where no_ticket = '$no'";
+     return $this->execute($query);
+ 	 }
+	   
+}
+
+class  refund {
+	
+	  function __construct(){
+		$mysqli = new mysqli('localhost', 'root', 
+	              '', 'apsi');
+	  }
+	  function execute($query){
+				$mysqli = new mysqli('localhost', 'root', 
+	                       '', 'apsi');
+				$rs = $mysqli->query ($query);
+				return $rs;
+	  }
+	   public function fetch($var){
+		return mysqli_fetch_array($var);
+	  }
+	   
+	 public function refund($id,$email,$nomor,$bank,$alasan)
+     {
+     $query = "insert into refund values('$id','$email','$nomor','$bank','$alasan','sedang proses')";
+	 return $this->execute($query); 
+     }	   
+}
+?>

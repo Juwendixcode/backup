@@ -1,0 +1,132 @@
+<?php	 
+	include 'model/model.php';
+	ob_start(); 
+	class controller {
+		
+		public $user;
+		public $ticket;
+		public $penumpang;
+		public $refund;
+								
+		public function __construct(){
+			$this->model = new user();
+			$this->model = new ticket();
+			$this->model = new penumpang();
+			$this->model = new refund(); 
+		}
+		
+		public function view_profil(){						
+			include 'view/profil.php';
+		}
+		
+		public function view_login(){
+			include 'view/formlogin.php';
+		}
+		public function view_register(){						
+			include 'view/formregister.php';
+		}
+		public function view_pemesanan(){
+			$tiket = $this->ticket->getdataticket($_SESSION['email']);															
+			include 'view/pemesanan.php';
+		}
+		
+		public function view_detailticket($id)
+		{			
+			$tiketquery = $this->ticket->getdataticket2($id);
+			$tiket = $this->ticket->fetch($tiketquery);
+			$penumpang = $this->ticket->getpenumpang($id);
+						
+			include 'view/detailticket.php';			
+		}
+		
+		public function register(){
+			if(isset($_POST['register'])){				
+			$user = strtok($_POST['username'], '@');							
+			$register=$this->user->input_register($user,$_POST['password'],$_POST['username']);						
+			header ('location:index.php');
+			exit();
+			}
+		}
+		
+		public function syarat()
+		{
+			if(isset($_POST['refund'])){
+				header ('location:index.php?syarat=1');
+			}
+			
+		}
+		
+		public function view_syarat()
+		{
+			include 'view/syarat.php';
+		}
+		
+		public function view_formrefund()
+		{
+			include 'view/formrefund.php';
+		}
+		
+		public function view_detailrefund(){
+			$tiketdata = $this->ticket->getdataticket2($_SESSION['id']);
+			$tiket = $this->ticket->fetch($tiketdata);		
+			include 'view/detailrefund.php';
+		}
+		
+		public function refund()
+		{
+			if(isset($_POST['refund'])){
+				$refund = $this->refund->refund($_SESSION['id'],$_POST['email'],
+				$_POST['nomorrekening'],$_POST['namabank'],$_POST['alasanrefund']);
+				$ubah = $this->ticket->ubah($_SESSION['id']);				
+				header('location:index.php?detailrefund=0');					}					
+		}
+		
+		public function ceklogin()
+		{
+			if(isset($_POST['login'])){
+				
+			if(!empty($_POST['email'])&& !empty($_POST['password'])){											
+			$query = $this->user->login($_POST['email'],$_POST['password']);
+			$cek   = $this->user->fetch($query); 	
+			
+			
+			if($cek['email']==$_POST['email']&&$cek['password']==$_POST['password']){
+				$_SESSION['email']=$_POST['email'];
+				header ('location:index.php');
+				exit();
+			}else {
+ 			echo "<script type='text/javascript'> alert('Username / Password tidak sesuai.');</script>";
+			header ('location:index.php');
+				exit();
+			}						
+			}
+			elseif(isset($_POST['register'])){
+				header ('location:index.php?register=1');
+			}
+			}					
+		}	
+
+		public function pindah()
+		{
+			if(isset($_POST['setuju'])){
+				header ('location:index.php?formrefund=1');
+			}	
+			elseif(isset($_POST['back'])){
+				header ('location:index.php?pemesanan=1');
+			}
+			elseif(isset($_POST['syarat'])){
+				$_SESSION['id']=$_POST['id'];	
+				header ('location:index.php?syarat=1');
+			}
+		}
+								
+		public function logout()
+	  	{	      
+	     	session_destroy();
+			header ('location:index.php');			
+	  	}
+		
+		
+	}
+?>
+

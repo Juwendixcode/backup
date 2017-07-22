@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Karakter set utf-8 paling direkomendasikan karena bersifat universal -->
+	<meta charset="utf-8">
+
+	<!-- Untuk optimalisasi tampilan di browser yg berbeda -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Biography</title>
+
+	<!-- link ke file Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+	
+	.body{
+		
+		
+	}
+
+	
+.flip-container {
+	perspective: 1000;
+	overflow: hidden;
+}
+	
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+}
+
+.flip-container, .front, .back {
+	height:  587px;
+	width: 	 338.25px;
+	text-align: center;	
+}
+
+.flipper {
+	transition: 1s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.front {
+	z-index: 2;
+
+	transform: rotateY(0deg);
+}
+
+.back {
+	transform: rotateY(180deg);
+}
+
+.isi{
+  		height: 587px;  		
+  		display: block;
+	}
+.isi::after{
+		 content: "";
+  		 background-size: 100% 100%;  		 
+		  opacity: 0.1;
+		  top: 0;
+		  left: 0;
+		  bottom: 0;
+		  right: 0;
+		  position: absolute;
+		  z-index: -1; 
+		}	
+.foto{
+margin-top: 50%;
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-static-top" style="margin: 0px; background-color: #1A2633;" >
+		
+		<div class="container">			
+			<div class="navbar-header navbar-left">
+				<ul class="nav navbar-nav" style="margin-left: 300px; padding-top: 10px;">
+						<li><a href="bio.html"><h4>BIOGRAPHY</h4></a></li>
+						<li><a href="aol.html"><h4>ALBUM</h4></a></li>
+						<li><a href="home.html"><h4>HOME</h4></a></li>						
+						<li><a href="comment.php"><h4>COMMENT</h4></a></li>
+						<li><a href="contact.html"><h4>CONTACT</h4></a></li>
+					</ul>
+			</div>
+		</div>
+	</nav>
+<div id="a" style="color:white; background-color: #1A2633; height:587px">
+<div class="flip-container " ontouchstart="this.classList.toggle('onclick');" style="overflow:text auto; position: absolute;">
+	<div class="flipper">
+		<div class="front" style="background: url(images/w1.jpg);">
+			<div class="foto">
+			<img src="images/facebook.png" class="img-circle" width="170" height="170">
+			<h3>Facebook</h3>
+			</div>
+		</div>
+		<div class="back" style="background: url(images/b1.jpg); ">
+			<div class=foto>
+			<img src="images/faceb.png" class="img-circle" width="170" height="170" style="background-color: white">
+			<h4><br>Facebook.com/hanif.rafidi</h4>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="flip-container " ontouchstart="this.classList.toggle('hover');" style="overflow:hidden;position: absolute; left: 25%">
+	<div class="flipper">
+		<div class="front" style="background: url(images/w2.jpg); ">
+			<div class="foto">
+			<img src="images/phone.png" class="img-circle" width="170" height="170">
+			<h3>Phone</h3>
+			</div>
+		</div>
+		<div class="back" style="background: url(images/b2.jpg); ">
+			<div class="foto">
+			<img src="images/phone.png" class="img-circle" width="170" height="170">
+			<h3>085398825138</h3>
+			<h3>08993461065</h3>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="flip-container" ontouchstart="this.classList.toggle('hover');" style="overflow:hidden;position: absolute;left: 50%">
+	<div class="flipper">
+		<div class="front" style="background: url(images/w3.jpg);">
+			<div class="foto">
+			<img src="images/line.png" class="img-circle" width="170" height="170">
+			<h3>Line</h3>
+			</div>
+		</div>
+		<div class="back" style="background: url(images/b3.jpg); ">
+			<div class="foto">
+			<img src="images/line3.PNG" class="img-circle" width="170" height="170">
+			<h3>hanif.rafidi</h3>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="flip-container" ontouchstart="this.classList.toggle('hover');" style="position: absolute;left: 75%">
+	<div class="flipper">
+		<div class="front isi" style="background: url(images/w4.jpg);">
+			<div class="foto">
+			<img src="images/google.png" class="img-circle" width="170" height="170">
+			<h3>Goggle+</h3>
+			</div>
+		</div>
+		<div class="back" style="background: url(images/b4.jpg); ">
+			<div class="foto">
+			<img src="images/photo.jpg" class="img-circle" width="170" height="170">
+			<h4>hanif.Rfd</h4>
+			<h4>hanif.wrong@gmail.com</h4>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<?php 
+ob_start();
+include "model.php";
+
+class controller{
+	public $model;
+	
+	function __construct(){
+			$this->model = new model(); 
+	}
+	
+	public function viewLogin()
+  	{
+  	include 'login.php';
+	}
+	
+	public function viewRegister(){
+		include 'register.php';
+	}
+	
+  	public function login()
+  	{
+      $this ->model-> cekLogin($_POST['username'],$_POST['password']);
+	  header('location:index.php');
+	  exit();	
+  	}	
+	
+	public function register(){
+						
+		if(isset($_POST['register'])){
+		$username = $_POST['username'];
+		$email    = $_POST['email'];
+		$password = $_POST['password'];
+		
+		
+		$cek  = $this->model->tambahuserdata($username,$password,$email);
+		$cek2 = $this->model->tambahprofilsementara($username,$email);
+				
+		if($cek){
+		
+		echo "<script>alert('data berhasil dimasukkan')</script>";
+		header('location:index.php');
+		exit();
+		}else{
+		echo "<script>alert('data gagal dimasukkan')</script>";
+		header('location:index.php');
+		exit();	
+		}		
+		}
+												
+	}
+	
+	public function vieweditprofil($user)
+	{
+		$profilquery = $this->model->profil_user($user);
+		$profil = $this->model->fetch($profilquery);
+		$userquery = $this->model->user_user($user);
+		$user = $this->model->fetch($userquery);
+		$temanquery=$this->model->jumlahTeman($profil['id_user']);
+		$teman = $this->model->fetch($temanquery);
+		$pesanbaruquery = $this->model->pesan_userbelumterbaca($profil['username']);
+		$pesanbaru = $this->model->fetch($pesanbaruquery);
+		include 'editprofil.php';
+	}
+	
+	public function insertdataprofil(){
+		if(isset($_POST['register'])){
+		$username = $_POST['username'];
+		$email    = $_POST['email'];
+		$password = $_POST['password'];
+		$tahun    = $_POST['tahun'];
+		$tanggal  = $_POST['tanggal'];
+		$bulan    = $_POST['bulan'];
+		
+		$user = $_SESSION['username'];
+		$profilquery=$this->model->profil_user($user);
+		$profil = $this->model->fetch($profilquery);
+		
+		if($user!=$username){
+			$_SESSION['username']=$username;
+		}
+								
+		$date = $_POST['tahun'].'-'.$_POST['bulan'].'-'.$_POST['tanggal'];
+		$fileName = $_FILES['gambar']['name'];
+		$back = $_FILES['back']['name'];		
+		
+		if($fileName!=''&&$back!=''){	
+		$cek  = $this->model->tambahprofil($profil['id_user'],$username, $email,$date,$fileName,$back);			  		
+		$cek2 = $this->model->updateuser($profil['id_user'],$username,$password,$email);
+		}else{
+		$cek  = $this->model->tambahprofil($profil['id_user'],$username, $email,$date,$profil['photo'],$profil['back']);			  		
+		$cek2 = $this->model->updateuser($profil['id_user'],$username,$password,$email);
+		}
+		
+		move_uploaded_file($_FILES['gambar']['tmp_name'], "img/".$_FILES['gambar']['name']);
+		move_uploaded_file($_FILES['back']['tmp_name'], "img/".$_FILES['back']['name']);
+				
+		header('location:index.php');
+		exit();		
+		}
+	}
+
+	public function viewpesanprofil($id){
+		$pesan2 = $this->model->tampil_pesanid($id);
+		$datapesan = $this->model->fetch($pesan2);
+		
+		$profilsemua = $this->model->profil_session();
+		$profil = $this->model->fetch($profilsemua);
+		$temanquery=$this->model->jumlahTeman($profil['id_user']);
+		$teman = $this->model->fetch($temanquery);
+		
+		$pesanquery = $this->model->semua_pesanuser($profil['username']);
+		$pesanbaruquery = $this->model->pesan_userbelumterbaca($profil['username']);
+		$pesanbaru = $this->model->fetch($pesanbaruquery);
+		
+		$fpquery = $this->model->profil_user($datapesan['pengirim']);
+		$fotoprofilpesan= $this->model->fetch($fpquery);
+		
+		$fquery = $this->model->foto_id($datapesan['id_foto']);
+		$fotopesan = $this->model->fetch($fquery);
+		
+		if($datapesan['statuspesan']=='baru'){
+		$ubahstatus = $this->model->ubahstatuspesan($id);
+		header("Refresh:0");	
+		}
+																
+		include 'pesanprofil.php';
+	}
+
+	
+	
+	
+	public function view_index()
+	{
+		$profilsemua = $this->model->profil_session();
+		$profil = $this->model->fetch($profilsemua);
+		
+		$fotosemua = $this->model->semua_foto();
+		
+		$friendphoto = $this->model->friend_sessionid($profil['id_user']);
+		
+		$temanquery=$this->model->jumlahTeman($profil['id_user']);
+		$teman = $this->model->fetch($temanquery);
+		
+		$pesanbaruquery = $this->model->pesan_userbelumterbaca($profil['username']);
+		$pesanbaru = $this->model->fetch($pesanbaruquery);
+		
+		include 'indexx.php';	
+	}
+	public function view_admin()
+	{
+		$user = $this->model->semua_user();
+		$pesan = $this->model->semua_pesanadmin();
+		$cekpesan = $this->model->pesan_adminbelumterbaca();
+		$jumlahpesan = $this->model->fetch($cekpesan);
+				
+		include 'admin.php';	
+	}
+	public function view_home(){
+		$profilsemua = $this->model->profil_session();
+		$profil = $this->model->fetch($profilsemua);
+		
+		$user=$_SESSION['username'];
+		$foto=$this->model->foto_posting($user);
+					
+		$temanquery=$this->model->jumlahTeman($profil['id_user']);
+		$teman = $this->model->fetch($temanquery);
+		
+		include 'home2.php';
+	}
+	
+	public function viewEditAdmin($id)
+	{
+		header('location:Edit.php?id='.$id.'');
+		exit();
+	}
+	
+	public function adminfunction()
+	{
+		if(isset($_POST['delete'])){
+		$delete=$this->model->deleteuser($_POST['id']);
+		
+		header("Refresh:0");	
+		}
+	}
+	
+	public function view_tambahuser()
+	{
+		include 'tambahuser.php';
+	}
+	
+	
+	public function viewReportAdmin($id)
+	{
+		$pesan2 = $this->model->tampil_pesanid($id);
+		$datapesan = $this->model->fetch($pesan2);
+		
+		$pesan = $this->model->semua_pesanadmin();
+		
+		if($datapesan['statuspesan']=='baru'){
+		$ubahstatus = $this->model->ubahstatuspesan($id);
+		header("Refresh:0");	
+		}
+				
+		$cekpesan = $this->model->pesan_adminbelumterbaca();
+		$jumlahpesan = $this->model->fetch($cekpesan);
+								
+		$profil = $this->model->profil_user($datapesan['pengirim']);
+		$dataprofil =  $this->model->fetch($profil); 	
+		
+		include 'report.php';
+	}
+	
+	public function deletepesanadmin(){
+	   if(isset($_POST['deleteall'])){	
+	   $hapus=$this->model->deletesemuapesandmin();
+	   header("Refresh:0");
+	   exit();
+	   }
+	}	
+	
+	
+	
+	public function deleteuser($id){
+		$delete=$this->model->deleteuser($id);
+		include 'index.php';
+	}
+	
+	public function view_friend(){
+		$user = $user = $_SESSION['username'];	
+						
+		$profilsemua = $this->model->profil_session();
+		$profil = $this->model->fetch($profilsemua);	
+		
+		$temanquery=$this->model->jumlahTeman($profil['id_user']);
+		$teman = $this->model->fetch($temanquery);
+		
+		$sudahquery =$this->model->friend_id($profil['id_user']);
+		
+		
+		$add = $this->model->tampilbarudiadd($user);
+		
+				
+		include 'friend.php';
+	}
+	public function view_profil(){
+		$profilsemua = $this->model->profil_session();
+		$profil = $this->model->fetch($profilsemua);
+		
+		$fotosemua = $this->model->semua_foto();
+		
+		$friendphoto = $this->model->friend_sessionid($profil['id_user']);
+		
+		$temanquery=$this->model->jumlahTeman($profil['id_user']);
+		$teman = $this->model->fetch($temanquery);
+		
+		
+			
+		include 'indexx.php';
+	}
+	public function view_profil_orang($id){
+		$profilsemua = $this->model->profil_session();
+		$profil = $this->model->fetch($profilsemua);			
+		
+		$profilidquery = $this->model->profil_id($id);
+		$profilid = $this->model->fetch($profilidquery);
+		
+		$fotosemua = $this->model->semua_fotouser($profilid['username']);
+		
+		$friendphoto = $this->model->friend_sessionid($profilid['id_user']);
+		
+		$cektemanquery = $this->model->cekteman($profil['id_user'],$profilid['username']);
+		$cekteman = $this->model->fetch($cektemanquery);
+		
+		$temanquery=$this->model->jumlahTeman($profil['id_user']);
+		$teman = $this->model->fetch($temanquery);
+										
+		include 'profil_orang.php';
+	}
+	
+	public function view_profilpicture($id){
+		$profilpicture=$this->model->profilpicture($id);
+		$picture=$this->model->fetch($profilpicture);
+		
+		$profiluserquery =$this->model->profil_user($picture['username']);
+		$profil=$this->model->fetch($profiluserquery); 
+		
+		$jumlahLikeQuery= $this->model->jumlahLike($picture['id_foto']);	
+		$jumlahLike = $this->model->fetch($jumlahLikeQuery);
+			
+		$jumlahKomentarQuery= $this->model->jumlahKomentar($picture['id_foto']);	
+		$jumlahKomentar = $this->model->fetch($jumlahKomentarQuery);
+		
+		$komen = $this->model->komen_id($id);
+		
+		include 'profil_picture.php';
+	}
+	
+	public function editkomen()
+	{
+		if(isset($_POST['edot'])){
+		$query = $this->model->editkomen($_POST['idpesan'],$_POST['editkomen']);			
+		header("Refresh:0");
+		exit();				
+		}			
+	}
+	public function hapuskomen()
+	{
+		if(isset($_POST['hapuskomen'])){
+		$query = $this->model->hapuskomen($_POST['idpesan']);			
+		header("Refresh:0");
+		exit();				
+		}			
+	}
+	
+
+	public function komentar($id){
+		$komen= $_POST['text'];
+		$user = $_SESSION['username'];
+		$komentar =$this->model->tambahkomentar($id,$komen,$user);			
+		header("Refresh:0");
+		exit();	
+	}
+
+	public function like($id){
+		$user = $_SESSION['username'];
+		$like =$this->model->tambahlike($id,$user);
+		header("Refresh:0");
+		exit();			
+	}
+	public function unlike($id,$user){		
+		$like =$this->model->hapuslike($id,$user);
+		header("Refresh:0");
+		exit();			
+	}
+	public function report($id,$user,$email,$subject,$pesan){
+		$pengirim = $_SESSION['username'];
+		$report =$this->model->tambahreport($id,$user,$email,$pengirim,$subject,$pesan);
+		header("Refresh:0");
+		exit();			
+	}
+	
+	public function balaspesan()
+	{
+		if(isset($_POST['reply'])){
+		$balas = $this->model->balaspesan($_POST['idfoto'],$_SESSION['username'],$_POST['penerima'],$_POST['balasan'],$_POST['subject']);
+		header("Refresh:0");
+		exit();
+		}
+	}
+	
+	public function editphoto()
+	{
+		if(isset($_POST['edit'])){
+			
+			$query = $this->model->editphoto($_POST['caption'],$_POST['id']);			
+			header ('location:index.php?profil=1');
+			exit();
+		}
+	}
+	
+	public function editpicture($id){
+		$fotoquery = $this->model->foto_id($id);
+		$fotodata = $this->model->fetch($fotoquery);
+		
+		$profilquery = $this->model->profil_user($fotodata['username']);
+		$profildata = $this->model->fetch($profilquery);
+		
+		$jumlahLikeQuery= $this->model->jumlahLike($fotodata['id_foto']);	
+		$jumlahLike = $this->model->fetch($jumlahLikeQuery);
+			
+		$jumlahKomentarQuery= $this->model->jumlahKomentar($fotodata['id_foto']);	
+		$jumlahKomentar = $this->model->fetch($jumlahKomentarQuery);
+
+		include 'editphoto.php';
+	}
+	
+	
+	
+	public function tambahteman(){
+		$user = $_POST['username'];
+		$user2 =  $_SESSION['username'];
+		
+		$iduser = $this->model->profil_user($_SESSION['username']);
+		$iduser2 = $this->model->profil_user($user);
+		$data= $this->model->fetch($iduser);
+		$data2= $this->model->fetch($iduser2);
+		
+		$tambahteman=$this->model->tambahteman1($data['id_user'],$user);
+		$tambahteman2=$this->model->tambahteman2($data2['id_user'],$user2);
+		header("Refresh:0");
+		exit();						
+	}
+	
+	public function posting()
+	{
+		if (isset($_POST['save'])){
+		
+		$fileName = $_FILES['gambar']['name'];
+		$user = $_SESSION['username'];
+		$text = $_POST['status'];	
+		
+		$posting = $this->model->tambahposting($user,$fileName,$text);
+		move_uploaded_file($_FILES['gambar']['tmp_name'], "gambar/".$_FILES['gambar']['name']);
+		
+		if($posting){
+		echo "<script>alert('data berhasil dimasukkan')</script>";
+		header("Refresh:0");
+		}else{
+		echo "<script>alert('data gagal dimasukkan')</script>";}
+		header("Refresh:0");
+		exit();
+		}		
+	}
+	
+	public function hapus($id){
+		$hapus = $this->model->hapusfoto($id);
+		if($hapus){
+		echo "<script>alert('data berhasil dihapus')</script>";
+		header("Refresh:0");
+		}else{
+		echo "<script>alert('data gagal dihapus')</script>";
+		}
+	}
+
+	
+	public function logout()
+  	{
+      session_unset();	
+      session_destroy();
+	  header('location:index.php');
+	  exit();
+  	}
+}
+?>

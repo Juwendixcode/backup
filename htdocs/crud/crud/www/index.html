@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>Blank Cordova Mobile App Project Template (Lite)</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    <! include css dan js material design lite -->
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="bower_components/material-design-lite/material.min.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <!-- punya input -->
+    <script>
+        $(document).ready(function(){
+
+                  // alert('ini jquery');               
+
+                  $("#SIMPAN").on("click", function(){
+
+                var data = $("#NYIMPAN").serialize();    
+
+                $.post("http://192.168.43.4/crudxdk/input.php", data, function(data){
+
+                               if(data.status == "sukses"){
+                                     alert('Input Berhasil');
+                                     window.location='index.html';
+                                }
+                                else if(data.status == 'gagal'){
+                                       alert("Error on query!");
+                                }
+
+                 });
+
+
+             });//save onclick
+
+
+        });//dociment ready
+    </script>
+    <!-- punya list -->
+    <script>
+        $(document).ready(function(){
+            
+                      
+            $.post("http://192.168.43.4/crudxdk/get.php",function(response){
+            
+            // alert(JSON.stringify(response));
+                
+                var arr = $.parseJSON(response); 
+                var trHTML = '';
+                
+                $.each(arr, function(ix, nilai){
+                                      
+                 trHTML += '<li class="mdl-list__item"><a href="edit.html" class="edit" id="' + arr[ix].id +'" style="color:dimgrey;"><span class="mdl-list__item-primary-content"><i class="material-icons mdl-list__item-icon">person</i>' + arr[ix].nama + '</span></a></li>'
+                });
+                  $('#datane').append(trHTML).listview("refresh");
+
+            });
+            
+          
+            
+         });
+
+
+        $(document).on('click','.edit',function(){
+
+           var idne = $(this).attr('id');
+
+
+            window.location="edit.html?id="+idne;
+
+            return false;
+
+
+
+
+        });        
+    </script>
+</head>
+
+<body>
+    <!-- Simple header with fixed tabs. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                    mdl-layout--fixed-tabs">
+          <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+              <!-- Title -->
+              <span class="mdl-layout-title">Aplikasi CRUD</span>
+            </div>
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Input</a>
+              <a href="#fixed-tab-2" class="mdl-layout__tab">List</a>
+            </div>
+          </header>
+          <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Title</span>
+          </div>
+          <main class="mdl-layout__content">
+            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+              <div class="page-content" align="center"><br>
+              <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding">
+                <!-- Textfield with Floating Label -->
+                <form action="#" id="NYIMPAN">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="nama" name="nama">
+                    <label class="mdl-textfield__label" for="nama">Nama</label>
+                  </div>
+                  <br>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="hp" name="hp">
+                    <label class="mdl-textfield__label" for="hp">Nomor HP</label>
+                    <span class="mdl-textfield__error">Input harus nomor!</span>
+                  </div>
+                </form>
+              <div align="right">
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="SIMPAN">Simpan</a>
+              </div>
+            </div>
+            </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+              <div class="page-content">
+                <ul class="demo-list-icon mdl-list" id="datane">
+                      
+                </ul>
+              </div>
+            </section>
+          </main>
+        </div>
+
+</body>
+</html>

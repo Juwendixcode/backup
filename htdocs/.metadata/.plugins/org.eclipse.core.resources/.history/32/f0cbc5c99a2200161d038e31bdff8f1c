@@ -1,0 +1,113 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+<style>
+	.report-userr{
+		border-radius:100%;
+	}
+	
+</style>
+
+</head>
+<body>
+
+<nav class="navbar">
+<div class="judul">My Website</div>
+	<ul style="margin-left:40%;">
+		<li><a href="index.php">Home</a></li>
+		<li><a href="index.php?report=0">Report</a></li>		
+		<?php 		
+			echo "<a href='index.php?logout=1'><li class='login'>Logout</li></a>";		
+		?>
+	</ul>	
+</nav>
+
+<?php
+	
+
+	
+?>
+<div class="box-besar">
+
+<div id="report-box">
+	<div class="boxx">
+		<div class="pp-user" style="float:left; margin-left:30px; margin-top:30px;">
+			<img class="report-userr" src="gambar/<?php echo $profil['photo']; ?>" width="60px" height="60px" />
+		</div>
+		<div class="user-pesan">
+			<h2><?php echo $pesan['pengirim']; ?></h2>
+</div>
+</div>
+	<hr />
+	<div class="pesannya">
+		<h4>Subject : <?php echo $data['subject']; ?></h4>
+		<?php echo $data['pesan']; ?>
+	</div>
+</div>
+<?php }else{?>
+
+<div class="box-besar">
+
+<div id="report-box">
+	<div class="boxx">
+		<div class="pp-user" style="float:left; margin-left:30px; margin-top:30px;">
+			<img src="" width="60px" height="60px" />
+		</div>
+		<div class="user-pesan">
+			<h2>Pesan</h2>
+</div>
+</div>
+	<hr />
+	<div class="pesannya">
+		<h4>Subject :Subject</h4>
+		
+	</div>
+</div>	
+	
+<?php } ?>
+
+
+<div class="form-balas">
+	<h2>Reply</h2>
+	<form class="" method="post" action="">
+		<textarea rows="10" cols="80"></textarea>
+		<br />
+		<input type="submit" value="Reply" />
+	</form>
+</div>
+
+</div>
+
+
+
+<div id="judul""> Report</div>
+	<div class="report" style="margin-top:0px;">
+	<?php 
+	$query3 = "select * from pesan order by id_pesan desc";
+	$cek3 = mysqli_query($con, $query3);
+	while($data3= mysqli_fetch_array($cek3)){
+	$query4 ="select photo from profil where username ='".$data3['pengirim']."'";
+	$cek4 = mysqli_query($con, $query4);	
+	$data4= mysqli_fetch_array($cek4);
+	?>
+	<a class="link" href="report.php?id=<?php echo $data3['id_pesan']; ?>">
+	<div class="box-report">
+		<div class="pp-user">
+			<img  class="foto-ppnya" src ="gambar/<?php echo $data4['photo']; ?>" width="60px" height="60px" />
+		</div>
+		<div class="pesan">
+			<span><?php echo $data3['pengirim']; ?></span>
+			<span><?php echo $data3['tanggal_pesan']; ?></span>
+			<span>Subject : <?php echo $data3['subject']; ?></span>
+		</div>
+	</div>
+	</a>	
+	<?php } ?>
+		</div>
+	</div>
+	</a>
+			
+</div>
+</body>
+</html>

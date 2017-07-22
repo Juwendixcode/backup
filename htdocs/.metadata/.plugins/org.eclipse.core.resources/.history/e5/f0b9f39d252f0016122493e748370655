@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<style>
+	.input-txt:focus {
+    background-color: #1BA0E2;
+    color: #000;
+	}
+	.input-txt{
+		margin-left:10px;
+		margin-top:10px;
+		color:#D9D9D9;
+	}
+	input[name="username"]{
+		margin-top:40px;
+	}
+	input[name="login"]{
+		
+	}
+	label{		
+		margin: 0% 0% 0% 28%;		
+		color:#1BA0E2;
+		font-family:Arial;
+		font-size:30px;
+	}
+	.button-ok{
+		margin-top:15px;		
+		width:280px;
+		height:43px;
+		background-color:#1BA0E2;
+		border:0px;
+		color:white;
+		border-radius: 3px;
+		font-size:13px;
+		font-family:;
+		margin-left:5px;
+	}		
+	input[name="register"]{
+		margin-top:20px;
+		background-color:#F97B0C;
+	}
+						
+	</style>
+
+
+</head>
+<body style="background-color:#1BA0E2;">
+
+<div style=" width: 330px; height: 325px; background-color: white; margin:8% 0px 0px 35% ; padding-top: 50px; padding-left:2%; border-box:box-sizing;">
+	<form>
+		<table>
+			<tr>
+			<td><label>Traveloka</label></td>
+			</tr>
+			<tr>
+				<td><input type="input" name="username" class="input-txt"
+				placeholder="Username" style="
+				height:40px;				
+				width :270px;
+				font-size:17px;
+				background-color:white;  				
+				border-top:0px;
+				border-right:0px;
+				border-left:0px;
+				border-bottom:1px #D9D9D9 solid; " />
+				</td>	
+			</tr>	
+			<tr>
+				<td><input type="password" name="password" class="input-txt" required="required"
+				placeholder="Password" style="height:40px;
+				background-color:white;  				
+				height:40px;				
+				width :270px;
+				font-size:17px;
+				border-top:0px;
+				border-right:0px;
+				border-left:0px;
+				border-bottom:1px #D9D9D9 solid; " />
+				</td>	
+			</tr>
+			
+			<tr>
+				<td>
+					<input type="submit" name="register" value="Register" class="button-ok" />					
+				</td>				
+			</tr>
+			<tr>								
+				<td><a href="#" style="color:#1BA0E2; text-decoration: none; float:right;font-size:15px;">back</a></td>				
+			</tr>
+		</table>
+		
+	</form>
+		
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+<link href="css/main.css" rel="stylesheet">
+    
+<title>Mapinfo</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">    
+  <script src='cordova.js'></script> 
+  <script type="text/javascript" src="js/proses.js"></script> 
+  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script> 
+</head>
+    
+<body style="font-size:18pt;border:0;margin:0;padding:0;">    
+    <div class="background">
+        
+        <form action="#" class="loginform" id="login">   
+            
+            <center>
+                <div class="gambaradmin">
+                <img src="images/logoadmin.png" width="100%" height="100%">
+                </div>
+            </center>
+            <input type="text" id="username" name="username" class="adminbox" placeholder="USERNAME">
+            <input type="password" id="password" name="password" class="adminbox" placeholder="PASSWORD">
+            <br>
+            
+            <center>
+                <div class="ok">
+                <input type="image" name="ok" onclick="return false" id="loginbtn" src="images/ok.png" width="100%" height="100%" alt="Submit Form"/>
+                </div>
+            </center>            
+            
+        </form> 
+    </div>
+    
+       
+</body>
+</html>
+
+<script>
+$(document).ready(function(){
+
+                  // alert('ini jquery');               
+
+                  $("#loginbtn").on("click", function(){
+
+                      var data = $("#login").serialize();    
+
+                    $.post("http://www.rabicuse.com/papb/php/admin.php", data, function(data){
+
+                               if(data.status == "sukses"){                                     
+                                     window.location='admin.html';
+                                }
+                                else if(data.status == 'gagal'){
+                                       alert("Login salah!");
+                                }
+
+                 });
+
+
+             });//save onclick
+
+
+        });
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+  </head>
+  <body>
+
+  </body>
+</html>
+
+<script>
+
+  $(document).ready(function(){
+    var data_list = [];
+     $.ajax({
+          url: "http://localhost/PGI/php/data.php",
+          dataType: "json",
+          success: function(data) {
+
+           for (var i =0; i<data.length; i++){
+               data_list[i]=[data[i].nama_tempat,Number(data[i].latitude),Number(data[i].longtitude),data[i].id_place];
+           }
+          alert(data_list[0]);
+          }
+      });
+  });
+
+
+
+ </script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Karakter set utf-8 paling direkomendasikan karena bersifat universal -->
+	<meta charset="utf-8">
+
+	<!-- Untuk optimalisasi tampilan di browser yg berbeda -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Biography</title>
+
+	<!-- link ke file Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<!-- JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+	<!-- link ke file CSS custom -->
+	<style type="text/css">
+	.isi{
+		
+		
+		background-repeat: no-repeat;
+		height: 587px;
+		overflow: hidden;
+	}
+	.kiri{
+		
+		height: 587px;
+	}
+	.kanan{
+		
+		height: 587px;
+	}
+	.g1{
+	background-image: url(images/street.jpg); background-size: 100% 100%; height: 200px; width: 100%;
+	transition: 2s;
+	
+	}
+	.g1:hover{
+		animation: fadeIn 2s;
+		background-image: url(images/city.jpg);
+	}
+
+	.g2{
+	background-image: url(images/lorong.jpg); background-size: 100% 100%;height: 387px; 
+	transition: 2s;
+	}
+	.g2:hover{
+		animation: fadeIn 2s;
+		background-image: url(images/rango.jpg);
+	}
+	.g3{
+		background-image: url(images/temple.jpg); background-size: 100% 100%; height: 193.5px; width: 58.3%;
+		transition: 2s;
+	}
+	.g3:hover{
+		animation: fadeIn 2s;
+		background-image: url(images/train.jpg);
+	}
+	.g4{
+		background-image: url(images/sunset.jpg); background-size: 100% 100%; height: 193.5px; width: 58.3%;
+		transition: 2s ease out;
+	}
+	.g4:hover{
+		animation: fadeIn 2s;
+		background-image: url(images/coffe.jpg);
+	}
+
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top" style="margin: 0px; background-color: #1A2633;" >
+		
+		<div class="container">			
+			<div class="navbar-header navbar-left">
+				<ul class="nav navbar-nav" style="margin-left: 300px; padding-top: 10px;">
+						<li><a href="bio.html"><h4>BIOGRAPHY</h4></a></li>
+						<li><a href="aol.html"><h4>ALBUM</h4></a></li>
+						<li><a href="home.html"><h4>HOME</h4></a></li>						
+						<li><a href="comment.php"><h4>COMMENT</h4></a></li>
+						<li><a href="contact.html"><h4>CONTACT</h4></a></li>
+					</ul>
+			</div>
+		</div>
+	</nav>
+		<div class="isi">
+			
+				<div class="container col-sm-6 kiri" style="padding: 0px">
+					<img src="images/typo2.png" width="100%" height="100%">
+
+				</div>
+				
+					<div class="container col-sm-6 kanan" style="padding: 0">
+						<div class="container col-sm-6 g1" style=""></div>
+						<div class="container col-sm-5 g2" style=""></div>
+						<div class="container col-sm-4 text-right g3" style=""></div>
+						<div class="container col-sm-4 text-right g4" style=""></div>
+
+					</div>
+					
+				
+			
+		</div>
+   		
+
+
+</body>
+</html>

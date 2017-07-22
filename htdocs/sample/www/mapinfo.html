@@ -1,0 +1,65 @@
+<html>
+<head>
+<link href="css/main.css" rel="stylesheet">
+    
+<title>Mapinfo</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">    
+  <script src='cordova.js'></script> 
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+</head>
+    
+<body style="font-family:Arial;font-size:18pt;border:0;margin:0;padding:0;">
+    <nav class="nav">
+        <center>
+            <a href="index.html">
+                <img src="images/logo.png" alt="logo"  class="logo">
+            </a>
+        </center>
+    </nav>        
+    <div class="photobox" >        
+          
+    </div>
+    <div class="head">
+        <div class="fot">
+        <img src="images/cowok.png" width="100%" height="100%">        
+        </div>
+        <div class="text"></div>
+    </div>    
+    <div class="mapinfo">        
+    </div>
+    <div class="notlp">
+        <div class="blue" >KONTAK</div>
+        <div class="white"></div>
+        
+    </div>
+</body>
+</html>
+<script>    
+    $(document).ready(function(){                                              
+    $.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results[1] || 0;
+    }    
+    var x= $.urlParam('id');                       
+            $.post("http://www.rabicuse.com/papb/php/datainfo.php?x="+x,function(response){            
+            // alert(JSON.stringify(response));                
+                var arr = $.parseJSON(response);                 
+                var trHTML = '';
+				var trGbr = '';
+                //var nama ='';                             
+                //alert(arr[0].gambar);
+                trHTML += '<table><tr><td>Alamat</td><td>: '+arr[0].alamat+'</td></tr><tr><td>Jumlah Kamar</td><td>: '+arr[0].kamar+'</td></tr><tr><td>Fasilitas</td><td>: '+arr[0].fasilitas+'</td></tr><tr><td>Harga</td><td>: '+arr[0].harga+'</td></tr><tr><td>Pemilik</td><td>: '+arr[0].pemilik+'</td></tr></table>';
+                trGbr += '<img src="http://www.rabicuse.com/papb/php/img/'+arr[0].gambar+'" alt="logo" width="100%" height="100%" >';      				 			
+                $('.text').html(arr[0].namakost);
+                $('.white').html(arr[0].notelp);			
+                $('.mapinfo').append(trHTML);
+                $('.photobox').append(trGbr);
+
+                  //$('.text').append(nama).listview("refresh");
+            });                          
+            
+          
+            
+         });
+</script>  

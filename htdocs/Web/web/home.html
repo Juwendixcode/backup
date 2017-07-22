@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Karakter set utf-8 paling direkomendasikan karena bersifat universal -->
+	<meta charset="utf-8">
+
+	<!-- Untuk optimalisasi tampilan di browser yg berbeda -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Biography</title>
+
+	<!-- link ke file Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<!-- JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.7.1.min.js"></script>
+
+	<!-- link ke file CSS custom -->
+	<style type="text/css">
+	body{
+		background-color: #1A2633;
+		width: 1366px;
+		overflow: auto;
+	}
+	.gc { 
+	position:relative;
+	width:500px; 
+	height:102px; 
+	z-index: 2;
+	top: 25px;
+	left: 349px;
+}
+.gc img { position:absolute; left:0; top:0; }
+.gc2 { 
+	position:relative;
+	width:500px; 
+	height:102px; 
+	z-index: 2;
+
+	top: 25px;
+	right: 49px;
+}
+.gc2 img { position:absolute; left:0; top:0; }
+.contwarna{
+	
+	height: 150px;
+	width: 400px;
+	position: relative;
+	z-index: 1;
+	
+}
+.cont{
+	width: 100px;
+	height: 100px;
+	
+}
+.cont{
+	width: 100px;
+	height: 100px;
+	
+}
+	.kiri{
+		background-color: Aqua;
+		height: 150px;
+	}
+	.kanan{
+		background-color: #BF3FBF;
+		height: 150px;
+	}
+	#latar {
+  width: 100%;
+  
+  transition: 2s;
+  padding-right: 20px; 
+  padding-left: 20px;
+}
+#latar:hover #hanif{
+	-webkit-animation: fadeInUp 4s;
+	-webkit-visibility: visible;	
+	animation: fadeInUp 4s;
+	visibility: visible;
+}
+#latar:hover .ss{
+	animation: fadeInUp 5s;
+	visibility: visible;
+	-webkit-animation: fadeInUp 5s;
+	-webkit-visibility: visible;
+}
+.ss{
+	visibility: hidden;
+	position: absolute;
+	top: 350px;
+ 	left: 45%;
+ 	transition: 2s;
+ 	animation: fadeOutDown 2s;
+ 	-webkit-transition: 2s;
+ 	-webkit-animation: fadeOutDown 2s;
+
+}
+
+.b{
+
+  transition: 5s;
+}
+.b:hover{
+-webkit-filter: blur(4px);
+  filter: blur(4px);	
+
+}
+.b:hover #hanif{
+
+}
+#hanif{
+		border-style: solid; 
+		border-color: #000;
+		border-width: 2px; 
+		color: #000;
+		width: 220px; 
+		padding-left: 15px; 
+		padding-bottom: 10px;
+ 		position: absolute;
+ 		top: 270px;
+ 		left: 42.5%;
+ 		visibility: hidden;
+ 		transition: 2s;
+ 		animation: fadeOutDown 2s;
+ 		-webkit-transition: 2s;
+ 		-webkit-animation: fadeOutDown 2s;
+}
+#latar{
+	
+}
+	.at{
+		height: 75;
+		background-color: green;
+	}
+	.ba{
+		height: 75;
+	}
+	#bio {
+		background-color: #fff;
+		height: 425px;
+		margin:0;
+		
+		
+		overflow: hidden;
+	}
+	#contact{
+		height: 300px;
+		background-color: #fff;
+	}
+	#bio:hover .picu{
+		animation: fadeInLeft 3s;
+		margin-top: 60px;
+		margin-left: 100px;
+		-webkit-filter: grayscale(50%);
+		visibility: visible;
+
+	}
+	.picu{
+		transition: 2s;
+		animation: fadeOutLeft 3s;
+		margin-top: 120px;
+		margin-left: 100px;
+		-webkit-filter: grayscale(50%);
+		visibility: hidden;
+		
+	}
+	.t1{
+		visibility: hidden;
+		transition: 2s;
+		animation: fadeOutRight 3s;
+	}
+	#bio:hover .t1{
+		visibility: visible;
+		animation: fadeInRight 3s;
+	}
+	.fot{
+		width:300px;
+		height:270px;
+	}
+.textcont{
+	height: 100%;
+	z-index:1;
+	margin-top: 7%;
+	margin-left: 3%;
+	}
+
+.fadein { position:relative; width:500px; height:100%; }
+.fadein img { position:absolute; left:4%; top:0; }
+
+.contkiri, .contkanan{
+visibility: hidden;
+}
+
+.contkiri{
+	transition: 2s;
+	animation: fadeOutLeft 2s;
+}
+.contkanan{
+	transition: 2s;
+	animation: fadeOutRight 2s;
+}
+
+#contact:hover .contkanan{
+	visibility: visible;
+	animation: fadeInRight 2s;
+}
+#contact:hover .contkiri{
+	visibility: visible;
+	animation: fadeInLeft 2s;
+}
+
+
+
+	</style>
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top" style="margin: 0px; background-color: #1A2633;" >
+		
+		<div class="container">			
+			<div class="navbar-header navbar-left">
+				<ul class="nav navbar-nav" style="margin-left: 300px; padding-top: 10px;">
+						<li><a href="bio.html"><h4>BIOGRAPHY</h4></a></li>
+						<li><a href="aol.html"><h4>ALBUM</h4></a></li>
+						<li><a href="home.html"><h4>HOME</h4></a></li>						
+						<li><a href="comment.php"><h4>COMMENT</h4></a></li>
+						<li><a href="contact.html"><h4>CONTACT</h4></a></li>
+					</ul>
+			</div>
+		</div>
+	</nav>
+
+<div class=>
+<div id="latar" style="right: -10px; padding: 0px;">
+			<img class="b" src="images/city.jpg" width="1366x" height="100%">
+			<div class="container" id="hanif" >
+						<h2 >Hi! <strong>I'm</strong>  <font class="bb">HANIF</font></h2>		
+			</div>
+			<h4 class="text-center ss" style="color:#000; font-family: "Helvetica Neue"">This is my website <br>please enjoy it.</h4>
+</div>
+</div>
+
+<div class="container-fluid " id="bio">
+	<div class="container" >
+			<div class="col-sm-4" >
+				<img class="picu" src="images/jisit.png" width="65%" height="65%">
+			</div>
+			<div class="col-sm-3 text-left t1" style="margin-top: 5%;float: right; margin-right: 25%">
+				<h1>About Me</h1>
+				<h4>Hi want to know more about me just visit another page,and<br> i hope you will have
+				great experience. This website is build from an amateur programmer who just learned it. So
+				don't have great expectation like another great website.
+
+					
+				</h4>
+			</div>
+	</div>
+</div>
+<div class="container-fluid bg-primary " id="aol" style=" background-color: #1A2633; padding: 50px; padding-top:30px;">
+	<div class="row">
+			<div class="col-sm-4 text-center" style="height: 250px; top: 80px;">
+				<h1 style="font-size: 40pt" class="al1">Album</h1>
+				
+			</div>
+					<div class="fadein col-sm-4">
+			<img class="fot img-thumbnail" src="images/temple.jpg">
+			<img class="fot img-thumbnail" src="images/typo.jpg">
+			<img class="fot img-thumbnail" src="images/rango.jpg">
+			<img class="fot img-thumbnail" src="images/jobs.jpg">		
+					</div>
+			<div class="col-sm-4 text-center" style="  position: absolute; right: 1%;">
+				<h2 class="text-justify al2" style="margin-right: 10%;margin-top: 10%; font-size: 40pt">Lot of my <br>experience <br> sleep in here </h2>
+			</div>
+	</div>
+</div>
+<div class="" id="contact" style="overflow: hidden;font-family: monospace; ">
+	
+	<div class="contkiri" style="float: left;">
+				
+				<div class="contwarna" >
+
+				<div class="gc" style="float: left; position: absolute;">
+					<img class="cont" src="images/line2.png" >
+				</div>
+				<h3 style="position: absolute; left:100px;top: 40px; ">hanif.rafidi</h3>
+				</div>
+		</div>
+		<div class="contkanan" style="float: right;">
+				<div class="contwarna" >
+				<div class="gc2">
+					<img class="cont" src="images/google.png" style="position: absolute;" >
+				</div>
+				<h4 style="position: absolute; left: 25%; top: 27%; ">HanifRfd <br> hanif.wrong@gmail.com</h4>
+				</div>
+		</div>
+
+		<div class="contkiri" style="float:left ; margin-top:11%; margin-left: -400px">
+				<div class="contwarna" >			
+				<div class="gc" style="position: absolute;">
+					<img class="cont" src="images/facebook3.png" >				
+				</div>
+				<h4 style="position: absolute; left:50px;top: 30%; ">facebook.com/hanif.rafidi</h4>
+				</div>
+		</div>
+		<div class="col-sm-4 text-center textcont"><h1>Contact</h1></div>
+		<div class="contkanan" style="float: right;margin-top:11%; margin-right: -400px">
+				<div class="contwarna" >								
+				<div class="gc2">
+					<img class="cont" src="images/phone.png" style="position: absolute;" >			
+				</div>
+				<h4 style="position: absolute; right:45%;top: 30%; ">085398825138<br>08993461065</h4>
+				</div>
+		</div>
+</div>
+<script src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+    $('.fadein img:gt(0)').hide();
+    setInterval(function(){
+      $('.fadein :first-child').fadeOut()
+         .next('img').fadeIn()
+         .end().appendTo('.fadein');}, 
+      3000);
+});
+</script>
+
+</body>
+</html>

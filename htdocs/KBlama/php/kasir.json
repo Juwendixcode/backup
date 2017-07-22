@@ -1,0 +1,51 @@
+[
+    {
+        "ID_Kasir": "2",
+        "Kasir_username": "tedja",
+        "Password": "tedja",
+        "Nama": "Tedja Adi",
+        "ID_Jenis_kelamin": "1"
+    },
+    {
+        "ID_Kasir": "3",
+        "Kasir_username": "farah",
+        "Password": "farah",
+        "Nama": "Farah A",
+        "ID_Jenis_kelamin": "2"
+    },
+    {
+        "ID_Kasir": "4",
+        "Kasir_username": "tio",
+        "Password": "tio",
+        "Nama": "Tio R",
+        "ID_Jenis_kelamin": "1"
+    },
+    {
+        "ID_Kasir": "5",
+        "Kasir_username": "renndy",
+        "Password": "renndy",
+        "Nama": "Renndy W",
+        "ID_Jenis_kelamin": "1"
+    },
+    {
+        "ID_Kasir": "6",
+        "Kasir_username": "danu",
+        "Password": "danu",
+        "Nama": "Danu P",
+        "ID_Jenis_kelamin": "1"
+    },
+    {
+        "ID_Kasir": "7",
+        "Kasir_username": "amalia",
+        "Password": "amalia",
+        "Nama": "F Amalia",
+        "ID_Jenis_kelamin": "2"
+    },
+    {
+        "ID_Kasir": "8",
+        "Kasir_username": "santi",
+        "Password": "santi",
+        "Nama": "Santi D",
+        "ID_Jenis_kelamin": "2"
+    }
+]

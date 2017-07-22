@@ -1,0 +1,7 @@
+{
+  "name": "GeolocationDemo",
+  "dependencies": {},
+  "devDependencies": {
+    "animate.css": "3.5.2"
+  }
+}

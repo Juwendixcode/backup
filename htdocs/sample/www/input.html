@@ -1,0 +1,55 @@
+<html>
+<head>
+<link href="css/main.css" rel="stylesheet">
+<title>Mapinfo</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">    
+  <script src='cordova.js'></script> 
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script> 
+</head>    
+<body style="font-size:18pt;border:0;margin:0;padding:0;overflow:visible;">    
+    <nav class="nav">
+        <center>
+            <a href="admin.html">
+                <img src="images/logo.png" alt="logo"  class="logo">
+            </a>
+        </center>
+    </nav>      
+    <center>
+        <div class="judul">Tambah Kost</div>
+    </center>    
+    <form action="http://www.rabicuse.com/papb/php/input.php" class="input" id="inputan" enctype="multipart/form-data" method="post">
+        <table>
+        <tr><td>Nama Kost</td></tr>
+        <tr><td><input type="text" id="namakost" name="namakost" class="ox"></td></tr>
+        <tr><td>Pemilik Kost</td></tr>
+        <tr><td><input type="text" id="pemilik" name="pemilik" class="ox"></td></tr>
+        <tr><td>No Hp</td></tr>
+        <tr><td><input type="text" id="nohp" name="nohp" class="ox"></td></tr>
+        <tr><td>alamat</td></tr>
+        <tr><td><input type="text" id="alamat" name="alamat" class="ox"></td></tr>
+        <tr><td>harga</td></tr>
+        <tr><td><input type="text" id="harga" name="harga" class="ox"></td></tr>
+        <tr><td>jumlah kamar</td></tr>
+        <tr><td><input type="text" id="kamar" name="kamar" class="ox"></td></tr>    
+        <tr><td>fasilitas</td></tr>
+        <tr><td><input type="text" id="fasilitas" name="fasilitas" class="ox"></td></tr>
+        <tr><td>Gambar</td></tr>
+        <tr><td><input type="file" name="gambar" id="file" /></td></tr>
+        <tr><td>Lokasi</td></tr>
+        <tr><td class="koord">
+            <input type="text" id="lang" name="lang" >
+            <input type="text" id="long" name="long" >
+            </td>
+        </tr>
+        </table>        
+       <center>
+         <div class="okk">
+             <input type="image" name="ok" id="inputbtn"  src="images/ok.png"  width="100%" height="100%" alt="Submit Form"/>
+             
+         </div>
+       </center>
+    
+    </form>
+</body>
+</html>
